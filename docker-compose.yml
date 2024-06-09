@@ -1,0 +1,64 @@
+version: '3.4'
+
+services: 
+  s_oneday_redis:
+    container_name: c_oneday_redis
+    image: redis:7.2.5-alpine
+    restart: always
+    ports:
+      - 6379:6379
+      - 8001:8001
+    volumes: 
+      - volume_redis:/data
+  s_oneday_elasticsearch:
+    container_name: c_oneday_elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.14.0
+    expose:
+      - 9200
+    ports:
+      - 9200:9200
+    environment:
+      ELASTIC_USERNAME: elastic
+      ELASTIC_PASSWORD: a42!33b0?0347367e
+      discovery.type: single-node
+      xpack.security.enabled: false
+    restart: always
+    volumes:
+      - volume_elastic:/usr/share/elasticsearch/data
+  s_oneday_kibana:
+    container_name: c_oneday_kibana
+    image: docker.elastic.co/kibana/kibana:8.14.0
+    expose:
+      - 5601
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_HOSTS: http://s_oneday_elasticsearch:9200
+    depends_on:
+      - s_oneday_elasticsearch
+    volumes:
+      - volume_kibana:/usr/share/kibana/data
+  s_oneday_webapi:
+    container_name: c_oneday_webapi
+    image: image_oneday_webapi
+    environment:
+      ConnectionStrings__BaseDbConnectionString: "Server=tcp:oneday-sql-server.database.windows.net,1433;Initial Catalog=BaseOnedayDB;Persist Security Info=False;User ID=oneday-db-admin-name-862024;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" 
+      RabbitMq__URL: amqps://ojkjcqld:MQ4sUAyYV1VW2Z-NuMrTc02UdoBXh7aR@sparrow.rmq.cloudamqp.com/ojkjcqld
+      Redis__ConnectionString: s_oneday_redis:6379
+      Azure__ConnectionStringStorageService: DefaultEndpointsProtocol=https;AccountName=accountonedayapp;AccountKey=blbOTjJm0sr3/eFTOHmL5i10LXeJS4cHxECbIuBM1+dwVZJu+Xt5n/Tj7DJvSLTKJLqdANraVLw++AStmfPIVw==;EndpointSuffix=core.windows.net
+      Azure__ConnectionStringMailService: endpoint=https://oneday-communication.europe.communication.azure.com/;accesskey=BUGL6j6Nuoa9YZyQ8qRdNWpDkbECzLIIyTZAxJtqY334syI4lhmBpviq231eUGKWJpzxCKfFhGI+/gylvBmvGQ==
+      Azure__CdnDomain: https://cdn-endpoint-oneday.azureedge.net
+      Azure__DefaultMailSenderAddress: info@wordbank.xyz
+      Facebook__AppId: 1108197060239437
+      Facebook__AppSecret: 0b977f498c277607694f197879e5a9b7
+      Google__WebClientId: 447004324738-nev4l7619qalgqhskss3iqbj2q2dp3rk.apps.googleusercontent.com
+    ports:
+      - 7070:8080
+    depends_on:
+      - s_oneday_redis
+      - s_oneday_kibana
+
+volumes:
+  volume_redis:
+  volume_elastic:
+  volume_kibana:

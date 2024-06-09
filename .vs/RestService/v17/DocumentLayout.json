@@ -1,0 +1,427 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|solutionrelative:webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|solutionrelative:webapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\webapi\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|solutionrelative:webapi\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\business\\serviceregistrationbussiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|solutionrelative:business\\serviceregistrationbussiness.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\business\\backgroundservices\\mailsendingbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|solutionrelative:business\\backgroundservices\\mailsendingbackgroundservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1237EACA-FE42-4937-8647-60D0405FA838}|Core\\Core.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\core\\crosscuttingconcerns\\cacheremovegroupinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1237EACA-FE42-4937-8647-60D0405FA838}|Core\\Core.csproj|solutionrelative:core\\crosscuttingconcerns\\cacheremovegroupinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1237EACA-FE42-4937-8647-60D0405FA838}|Core\\Core.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\core\\serviceregistrationcore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1237EACA-FE42-4937-8647-60D0405FA838}|Core\\Core.csproj|solutionrelative:core\\serviceregistrationcore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\webapi\\controllers\\rolecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|solutionrelative:webapi\\controllers\\rolecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\webapi\\controllers\\favoritecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|solutionrelative:webapi\\controllers\\favoritecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\webapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|solutionrelative:webapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\webapi\\migrationextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|solutionrelative:webapi\\migrationextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\business\\concrete\\wordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|solutionrelative:business\\concrete\\wordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\business\\concrete\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|solutionrelative:business\\concrete\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\business\\concrete\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|solutionrelative:business\\concrete\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\business\\concrete\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|solutionrelative:business\\concrete\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\business\\concrete\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|solutionrelative:business\\concrete\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\business\\concrete\\roleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|solutionrelative:business\\concrete\\roleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\business\\concrete\\otpservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|solutionrelative:business\\concrete\\otpservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\business\\concrete\\oauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|solutionrelative:business\\concrete\\oauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\business\\concrete\\mailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|solutionrelative:business\\concrete\\mailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\business\\concrete\\fileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|solutionrelative:business\\concrete\\fileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\business\\messagebroker\\mailmessagebrokerproducer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D14A6AC6-3EB7-4A3F-B771-1B50AF1AC9B3}|Business\\Business.csproj|solutionrelative:business\\messagebroker\\mailmessagebrokerproducer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\webapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|solutionrelative:webapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|c:\\users\\serva\\onedrive\\masa\u00FCst\u00FC\\onedayapp\\restservice\\webapi\\controllers\\learningcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA6434F9-43A6-49CC-9773-30F42AD979FE}|WebApi\\WebApi.csproj|solutionrelative:webapi\\controllers\\learningcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 103,
+          "SelectedChildIndex": 20,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "WordService.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\WordService.cs",
+              "RelativeDocumentMoniker": "Business\\Concrete\\WordService.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\WordService.cs",
+              "RelativeToolTip": "Business\\Concrete\\WordService.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAQwBcAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T19:47:19.725Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CategoryService.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\CategoryService.cs",
+              "RelativeDocumentMoniker": "Business\\Concrete\\CategoryService.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\CategoryService.cs",
+              "RelativeToolTip": "Business\\Concrete\\CategoryService.cs",
+              "ViewState": "AQIAAHoAAAAAAAAAAAAAwKIAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T19:47:04.862Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "RoleService.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\RoleService.cs",
+              "RelativeDocumentMoniker": "Business\\Concrete\\RoleService.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\RoleService.cs",
+              "RelativeToolTip": "Business\\Concrete\\RoleService.cs",
+              "ViewState": "AQIAADgAAAAAAAAAAAAIwF0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T19:48:24.639Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\UserService.cs",
+              "RelativeDocumentMoniker": "Business\\Concrete\\UserService.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\UserService.cs",
+              "RelativeToolTip": "Business\\Concrete\\UserService.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAxwAQAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T19:48:59.152Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\AuthService.cs",
+              "RelativeDocumentMoniker": "Business\\Concrete\\AuthService.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\AuthService.cs",
+              "RelativeToolTip": "Business\\Concrete\\AuthService.cs",
+              "ViewState": "AQIAAGoAAAAAAAAAAAAcwB0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T19:21:42.262Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "OAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\OAuthService.cs",
+              "RelativeDocumentMoniker": "Business\\Concrete\\OAuthService.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\OAuthService.cs",
+              "RelativeToolTip": "Business\\Concrete\\OAuthService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T16:00:08.834Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\TokenService.cs",
+              "RelativeDocumentMoniker": "Business\\Concrete\\TokenService.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\TokenService.cs",
+              "RelativeToolTip": "Business\\Concrete\\TokenService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T16:06:38.443Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "FileService.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\FileService.cs",
+              "RelativeDocumentMoniker": "Business\\Concrete\\FileService.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\FileService.cs",
+              "RelativeToolTip": "Business\\Concrete\\FileService.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAwwBMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T19:24:08.937Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "MailService.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\MailService.cs",
+              "RelativeDocumentMoniker": "Business\\Concrete\\MailService.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\MailService.cs",
+              "RelativeToolTip": "Business\\Concrete\\MailService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADoAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T12:12:57.421Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "OTPService.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\OTPService.cs",
+              "RelativeDocumentMoniker": "Business\\Concrete\\OTPService.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\Concrete\\OTPService.cs",
+              "RelativeToolTip": "Business\\Concrete\\OTPService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACwAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-03T16:45:34.808Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "WebApi\\Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "WebApi\\Controllers\\CategoryController.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAowBkAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T14:52:51.51Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RoleController.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\Controllers\\RoleController.cs",
+              "RelativeDocumentMoniker": "WebApi\\Controllers\\RoleController.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\Controllers\\RoleController.cs",
+              "RelativeToolTip": "WebApi\\Controllers\\RoleController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAiwBEAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T16:00:53.481Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "WebApi\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\Controllers\\UserController.cs",
+              "RelativeToolTip": "WebApi\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAQwCUAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T21:17:30.9Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "WebApi\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "WebApi\\Controllers\\AuthController.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAA5wAoAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T16:32:32.962Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FavoriteController.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\Controllers\\FavoriteController.cs",
+              "RelativeDocumentMoniker": "WebApi\\Controllers\\FavoriteController.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\Controllers\\FavoriteController.cs",
+              "RelativeToolTip": "WebApi\\Controllers\\FavoriteController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T15:06:32.254Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "LearningController.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\Controllers\\LearningController.cs",
+              "RelativeDocumentMoniker": "WebApi\\Controllers\\LearningController.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\Controllers\\LearningController.cs",
+              "RelativeToolTip": "WebApi\\Controllers\\LearningController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAACBjwBAAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T15:14:57.022Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "MailMessageBrokerProducer.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\MessageBroker\\MailMessageBrokerProducer.cs",
+              "RelativeDocumentMoniker": "Business\\MessageBroker\\MailMessageBrokerProducer.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\MessageBroker\\MailMessageBrokerProducer.cs",
+              "RelativeToolTip": "Business\\MessageBroker\\MailMessageBrokerProducer.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAQwA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T09:47:53.524Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MailSendingBackgroundService.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\BackgroundServices\\MailSendingBackgroundService.cs",
+              "RelativeDocumentMoniker": "Business\\BackgroundServices\\MailSendingBackgroundService.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\BackgroundServices\\MailSendingBackgroundService.cs",
+              "RelativeToolTip": "Business\\BackgroundServices\\MailSendingBackgroundService.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAcwB8AAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-02T10:12:21.993Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\appsettings.json",
+              "RelativeDocumentMoniker": "WebApi\\appsettings.json",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\appsettings.json",
+              "RelativeToolTip": "WebApi\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-06-08T15:02:42.697Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\Program.cs",
+              "RelativeDocumentMoniker": "WebApi\\Program.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\Program.cs",
+              "RelativeToolTip": "WebApi\\Program.cs",
+              "ViewState": "AQIAADkAAAAAAAAAAAAAAE0AAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T15:04:35.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MigrationExtension.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\MigrationExtension.cs",
+              "RelativeDocumentMoniker": "WebApi\\MigrationExtension.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\WebApi\\MigrationExtension.cs",
+              "RelativeToolTip": "WebApi\\MigrationExtension.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T14:58:47.173Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ServiceRegistrationBussiness.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\ServiceRegistrationBussiness.cs",
+              "RelativeDocumentMoniker": "Business\\ServiceRegistrationBussiness.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Business\\ServiceRegistrationBussiness.cs",
+              "RelativeToolTip": "Business\\ServiceRegistrationBussiness.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAcwCwAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:43:35.044Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ServiceRegistrationCore.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Core\\ServiceRegistrationCore.cs",
+              "RelativeDocumentMoniker": "Core\\ServiceRegistrationCore.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Core\\ServiceRegistrationCore.cs",
+              "RelativeToolTip": "Core\\ServiceRegistrationCore.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAABiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T20:45:46.1Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CacheRemoveGroupInterceptor.cs",
+              "DocumentMoniker": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Core\\CrossCuttingConcerns\\CacheRemoveGroupInterceptor.cs",
+              "RelativeDocumentMoniker": "Core\\CrossCuttingConcerns\\CacheRemoveGroupInterceptor.cs",
+              "ToolTip": "C:\\Users\\serva\\OneDrive\\Masa\u00FCst\u00FC\\OneDayApp\\RestService\\Core\\CrossCuttingConcerns\\CacheRemoveGroupInterceptor.cs",
+              "RelativeToolTip": "Core\\CrossCuttingConcerns\\CacheRemoveGroupInterceptor.cs",
+              "ViewState": "AQIAACkAAAAAAAAAAAAkwEcAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T12:13:27.197Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
