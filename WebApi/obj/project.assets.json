@@ -9966,11 +9966,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\WebApi\\WebApi.csproj",
+      "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\WebApi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\serva\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\WebApi\\obj\\",
+      "outputPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\serva\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9987,17 +9987,17 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Business\\Business.csproj": {
-              "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Business\\Business.csproj"
+            "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Business\\Business.csproj": {
+              "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Business\\Business.csproj"
             },
-            "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Core\\Core.csproj": {
-              "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Core\\Core.csproj"
+            "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Core\\Core.csproj": {
+              "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Core\\Core.csproj"
             },
-            "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\DataAccess\\DataAccess.csproj"
+            "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\DataAccess\\DataAccess.csproj"
             },
-            "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Model\\Model.csproj": {
-              "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Model\\Model.csproj"
+            "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Model\\Model.csproj": {
+              "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Model\\Model.csproj"
             }
           }
         }

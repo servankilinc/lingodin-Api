@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BPKM/7aKAkiOSlHvvnejNLYVOB35bXQph3xQyX9Ymnc1xeLvEVxhkqLQeWKFohspHEJWaPrkCbQxLN3twrKYCQ==",
+  "dgSpecHash": "lf1Ys/yTs2lORXA19+zAs0KcxUtJxGxnX5JSK/+21nqshsIZT9JhTzKcP1RiiEaVK2J9jJmsf6T6JVR/nry+Pw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\WebApi\\WebApi.csproj",
+  "projectFilePath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\serva\\.nuget\\packages\\autofac\\8.0.0\\autofac.8.0.0.nupkg.sha512",
     "C:\\Users\\serva\\.nuget\\packages\\autofac.extensions.dependencyinjection\\9.0.0\\autofac.extensions.dependencyinjection.9.0.0.nupkg.sha512",

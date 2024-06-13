@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XRMb6V0GGPEXvVgVJgG6euIEJEErXpcxxTRUX6Ccbx3rFQ+rQBUZgJG7eKPlVi75h/4XxxjUflM0EmU4IJssSQ==",
+  "dgSpecHash": "hfcjzU24U6xNPl4+yxMqKPZxcMbj4DenON5u51YlYW4hXAH+D5T5E6/qvQRz94Ki72FqKgv/3C/1+zetncnwmQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Business\\Business.csproj",
+  "projectFilePath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Business\\Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\serva\\.nuget\\packages\\autofac\\8.0.0\\autofac.8.0.0.nupkg.sha512",
     "C:\\Users\\serva\\.nuget\\packages\\autofac.extensions.dependencyinjection\\9.0.0\\autofac.extensions.dependencyinjection.9.0.0.nupkg.sha512",

@@ -4756,11 +4756,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Core\\Core.csproj",
+      "projectUniqueName": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Core\\Core.csproj",
+      "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Core\\Core.csproj",
       "packagesPath": "C:\\Users\\serva\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Core\\obj\\",
+      "outputPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\serva\\AppData\\Roaming\\NuGet\\NuGet.Config",

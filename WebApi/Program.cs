@@ -118,7 +118,7 @@ app.UseAuthorization();
 
 app.UseExceptionHandler();
 
-app.UseSerilogRequestLogging();
+//app.UseSerilogRequestLogging();
 
 app.UseRateLimiter();
 

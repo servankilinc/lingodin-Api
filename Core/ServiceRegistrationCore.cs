@@ -7,12 +7,11 @@ public static class ServiceRegistrationCore
     public static IServiceCollection AddCoreServices(this IServiceCollection services, IConfiguration configuration)
     {
         // ******** Distributed Cache **********
-        //services.AddDistributedMemoryCache(); // In Memory
-        services.AddStackExchangeRedisCache(options =>
-        {
-            options.Configuration = configuration["Redis:ConnectionString"];
-        });
-        Console.WriteLine($"***************** {configuration["Redis:ConnectionString"] } **********");
+        services.AddDistributedMemoryCache(); // In Memory
+        // services.AddStackExchangeRedisCache(options =>
+        // {
+        //     options.Configuration = configuration["Redis:ConnectionString"];
+        // });
         return services;
     }
 }

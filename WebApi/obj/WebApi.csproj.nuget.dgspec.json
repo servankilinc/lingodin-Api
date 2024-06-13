@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\WebApi\\WebApi.csproj": {}
+    "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\WebApi\\WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Business\\Business.csproj": {
+    "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Business\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Business\\Business.csproj",
+        "projectUniqueName": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Business\\Business.csproj",
         "projectName": "Business",
-        "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Business\\Business.csproj",
+        "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Business\\Business.csproj",
         "packagesPath": "C:\\Users\\serva\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Business\\obj\\",
+        "outputPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Business\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\serva\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\DataAccess\\DataAccess.csproj"
               }
             }
           }
@@ -94,14 +94,14 @@
         }
       }
     },
-    "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Core\\Core.csproj": {
+    "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Core\\Core.csproj",
+        "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\serva\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Core\\obj\\",
+        "outputPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\serva\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -225,14 +225,14 @@
         }
       }
     },
-    "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\DataAccess\\DataAccess.csproj",
+        "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\DataAccess\\DataAccess.csproj",
         "packagesPath": "C:\\Users\\serva\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\serva\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -249,8 +249,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Model\\Model.csproj": {
-                "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Model\\Model.csproj"
+              "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Model\\Model.csproj": {
+                "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Model\\Model.csproj"
               }
             }
           }
@@ -305,14 +305,14 @@
         }
       }
     },
-    "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Model\\Model.csproj": {
+    "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Model\\Model.csproj",
+        "projectUniqueName": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Model\\Model.csproj",
+        "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Model\\Model.csproj",
         "packagesPath": "C:\\Users\\serva\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Model\\obj\\",
+        "outputPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\serva\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -329,8 +329,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Core\\Core.csproj"
+              "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Core\\Core.csproj"
               }
             }
           }
@@ -369,14 +369,14 @@
         }
       }
     },
-    "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\WebApi\\WebApi.csproj": {
+    "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\WebApi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\WebApi\\WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\WebApi\\WebApi.csproj",
+        "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\WebApi\\WebApi.csproj",
         "packagesPath": "C:\\Users\\serva\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\WebApi\\obj\\",
+        "outputPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\serva\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -393,17 +393,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Business\\Business.csproj": {
-                "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Business\\Business.csproj"
+              "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Business\\Business.csproj": {
+                "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Business\\Business.csproj"
               },
-              "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Core\\Core.csproj"
+              "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Core\\Core.csproj"
               },
-              "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\DataAccess\\DataAccess.csproj"
               },
-              "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Model\\Model.csproj": {
-                "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\OneDayApp\\RestService\\Model\\Model.csproj"
+              "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Model\\Model.csproj": {
+                "projectPath": "C:\\Users\\serva\\OneDrive\\Masaüstü\\oneday\\Api\\Model\\Model.csproj"
               }
             }
           }
