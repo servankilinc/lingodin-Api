@@ -2,7 +2,7 @@ name: Build and deploy .NET application to container app oneday-webapi
 on:
   push:
     branches:
-    - main
+    - master
 env:
   CONTAINER_APP_CONTAINER_NAME: oneday-webapi
   CONTAINER_APP_NAME: oneday-webapi
