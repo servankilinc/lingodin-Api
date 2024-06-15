@@ -4,6 +4,7 @@ using Core.CrossCuttingConcerns;
 using Core.Exceptions;
 using Core.Utils.Auth;
 using Core.Utils.Auth.Hashing;
+using Microsoft.AspNetCore.Identity.Data;
 using Model.Dtos.RoleDtos;
 using Model.Dtos.UserDtos;
 using Model.Entities;
@@ -84,6 +85,65 @@ public class AuthService : IAuthService
 
 
 
+
+
+    [Validation(typeof(LoginByEmailDto))]
+    public async Task<UserAuthResponseModel> LoginAsync(LoginByEmailDto loginRequest)
+    {
+        var resultByMail = await _userService.IsUserExistByEmailAsync(loginRequest.Email);
+        if (resultByMail == false) throw new BusinessException("Email Address is Not Exist");
+
+        User user = await _userService.GetUserDetailByEmailAsync(loginRequest.Email);
+        if (user.IsVerifiedUser == false)
+        {
+            await _OTPService.SendConfirmationOTP(user: user); // send verify code again automaticly
+            throw new BusinessException("NotVerifiedUser");
+        }
+        if (user.AutheticatorType != AutheticatorType.Email) throw new BusinessException("OauthUserCannotLoginByMail");
+
+        bool isValid = HashingHelper.VerifyPasswordHash(loginRequest.Password, user.PasswordHash!, user.PasswordSalt!);
+        if(isValid == false ) throw new BusinessException("Password is not Correct");
+
+        AccessTokenResultModel accessTokenResult = await _tokenService.CreateAccessToken(user);
+
+        UserAuthResponseModel responseModel = new UserAuthResponseModel()
+        {
+            AccessToken = accessTokenResult.AccessToken,
+            Roles = accessTokenResult.Roles,
+            User = _mapper.Map<UserResponseDto>(user)
+        };
+
+        return responseModel;
+    }
+
+
+    [Validation(typeof(OtpControlByEmail))]
+    public async Task<UserAuthResponseModel> VerifyUserAccount(OtpControlByEmail otpControlByEmail)
+    {
+        User existingUser = await _userService.GetUserDetailByEmailAsync(otpControlByEmail.Email);
+        if (existingUser == null) throw new BusinessException("Email is not exist! ");
+
+        await _OTPService.VerifyConfirmationOTP(new OtpControlDto(userId: existingUser.Id, code: otpControlByEmail.Code));
+        // otp verified...
+         
+        existingUser.IsVerifiedUser = true;
+        User updatedUser = await _userService.UpdateUserDetailAsync(existingUser);
+
+        AccessTokenResultModel accessTokenResult = await _tokenService.CreateAccessToken(updatedUser);
+
+        UserAuthResponseModel responseModel = new UserAuthResponseModel
+        {
+            User = _mapper.Map<UserResponseDto>(updatedUser),
+            AccessToken = accessTokenResult.AccessToken,
+            Roles = accessTokenResult.Roles
+        };
+
+        return responseModel;
+    }
+
+
+
+
     [Validation(typeof(UserCreateDto))]
     public async Task<UserResponseDto> CreateAuthorizedUserAsync(UserCreateDto userCreateDto)
     {
@@ -114,33 +174,6 @@ public class AuthService : IAuthService
 
 
 
-    [Validation(typeof(LoginByEmailDto))]
-    public async Task<UserAuthResponseModel> LoginAsync(LoginByEmailDto loginRequest)
-    {
-        var resultByMail = await _userService.IsUserExistByEmailAsync(loginRequest.Email);
-        if (resultByMail == false) throw new BusinessException("Email Address is Not Exist");
-
-        User user = await _userService.GetUserDetailByEmailAsync(loginRequest.Email);
-        if (user.IsVerifiedUser == false) throw new BusinessException("NotVerifiedUser");
-        if (user.AutheticatorType != AutheticatorType.Email) throw new BusinessException("OauthUserCannotLoginByMail");
-
-        bool isValid = HashingHelper.VerifyPasswordHash(loginRequest.Password, user.PasswordHash!, user.PasswordSalt!);
-        if(isValid == false ) throw new BusinessException("Password is not Correct");
-
-        AccessTokenResultModel accessTokenResult = await _tokenService.CreateAccessToken(user);
-
-        UserAuthResponseModel responseModel = new UserAuthResponseModel()
-        {
-            AccessToken = accessTokenResult.AccessToken,
-            Roles = accessTokenResult.Roles,
-            User = _mapper.Map<UserResponseDto>(user)
-        };
-
-        return responseModel;
-    }
-
-
-
     public async Task SendPasswordResetMail(string email)
     {
         if (string.IsNullOrWhiteSpace(email)) throw new ArgumentNullException(nameof(email));
@@ -151,32 +184,22 @@ public class AuthService : IAuthService
         if (user.AutheticatorType != AutheticatorType.Email) throw new BusinessException("OauthUserCannotResetPassword");
 
         await _OTPService.SendConfirmationOTP(user: user);
-    }
-
-
-
-    [Validation(typeof(OtpControlByEmail))]
-    public async Task<Guid> VerifyPasswordReset(OtpControlByEmail otpControlByEmail)
-    {
-        User user = await _userService.GetUserDetailByEmailAsync(otpControlByEmail.Email);
-        if (user == null) throw new BusinessException($"Not exist any user for {otpControlByEmail.Email}");
-
-        await _OTPService.VerifyConfirmationOTP(new OtpControlDto(userId: user.Id, code: otpControlByEmail.Code));
-        return user.Id;
-    }
+    } 
 
 
 
     [Validation(typeof(UserPasswordResetDto))]
     public async Task<UserAuthResponseModel> ResetPassword(UserPasswordResetDto userPasswordResetDto)
     {
-        await _OTPService.VerifyConfirmationOTP(new OtpControlDto(userId: userPasswordResetDto.UserId, code: userPasswordResetDto.VerifyAgainOtpCode));
+        User existingUser = await _userService.GetUserDetailByEmailAsync(userPasswordResetDto.Email);
+        if (existingUser == null) throw new BusinessException("Email is not exist! ");
+
+        await _OTPService.VerifyConfirmationOTP(new OtpControlDto(userId: existingUser.Id, code: userPasswordResetDto.OtpCode));
+        // otp verified...
 
         byte[] passwordSalt, passwordHash;
         HashingHelper.CreatePasswordHash(userPasswordResetDto.Password!, out passwordHash, out passwordSalt);
-        
-        User existingUser = await _userService.GetUserDetailByIdAsync(userPasswordResetDto.UserId!);
-
+          
         existingUser.PasswordHash = passwordHash;
         existingUser.PasswordSalt = passwordSalt;
 

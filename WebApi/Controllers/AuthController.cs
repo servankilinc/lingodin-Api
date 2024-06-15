@@ -26,12 +26,14 @@ public class AuthController : ControllerBase
         return Ok();
     }
 
+
     [HttpPost("VerifyUser")]
     public async Task<IActionResult> VerifyUser([FromBody] OtpControlDto otpControlDto)
     {
         var resultUserRegister =  await _authService.VerifyUserAccount(otpControlDto);
         return Ok(resultUserRegister);
-    }    
+    }
+
 
     [HttpGet("SendVerifyCodeAgain")]
     public async Task<IActionResult> SendVerifyCodeAgain([FromQuery] Guid userId)
@@ -40,7 +42,23 @@ public class AuthController : ControllerBase
         return Ok();
     }
 
-    
+
+    [HttpPost("Login")]
+    public async Task<IActionResult> Login([FromBody] LoginByEmailDto loginRequest)
+    {
+        var resultUserLogin = await _authService.LoginAsync(loginRequest);
+        return Ok(resultUserLogin);
+    }
+
+
+    [HttpPost("VerifyUserByMail")]
+    public async Task<IActionResult> VerifyUserByMail([FromBody] OtpControlByEmail controlByEmail)
+    {
+        var resultUserRegister = await _authService.VerifyUserAccount(controlByEmail);
+        return Ok(resultUserRegister);
+    }
+
+
     // Forget password processes...
 
     [HttpGet("SendPasswordResetMail")]
@@ -52,14 +70,6 @@ public class AuthController : ControllerBase
     }
 
 
-    [HttpPost("VerifyPasswordReset")]
-    public async Task<IActionResult> VerifyPasswordReset([FromBody] OtpControlByEmail otpControlDto)
-    {
-        var result = await _authService.VerifyPasswordReset(otpControlDto);
-        return Ok(result);
-    }
-
-
     [HttpPost("ResetPassword")]
     public async Task<IActionResult> ResetPassword([FromBody] UserPasswordResetDto userPasswordResetDto)
     {
@@ -68,13 +78,6 @@ public class AuthController : ControllerBase
     }
 
 
-    [HttpPost("Login")]
-    public async Task<IActionResult> Login([FromBody] LoginByEmailDto loginRequest)
-    {
-        var resultUserLogin = await _authService.LoginAsync(loginRequest);
-        return Ok(resultUserLogin);
-    }
-    
 
     [HttpPost("LoginByGoogle")]
     public async Task<IActionResult> LoginByGoogle([FromBody] GoogleLoginRequest loginRequest)
