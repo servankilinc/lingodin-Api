@@ -43,6 +43,14 @@ public class AuthController : ControllerBase
     }
 
 
+    [HttpGet("SendVerifyCodeAgainByMail")]
+    public async Task<IActionResult> SendVerifyCodeAgainByMail([FromQuery] string email)
+    {
+        await _authService.SendAccountVerifyCodeAgain(email);
+        return Ok();
+    }
+
+
     [HttpPost("Login")]
     public async Task<IActionResult> Login([FromBody] LoginByEmailDto loginRequest)
     {

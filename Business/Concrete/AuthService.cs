@@ -141,6 +141,14 @@ public class AuthService : IAuthService
         return responseModel;
     }
 
+    public async Task SendAccountVerifyCodeAgain(string email)
+    {
+        if (string.IsNullOrWhiteSpace(email)) throw new ArgumentNullException(nameof(email));
+
+        User user = await _userService.GetUserDetailByEmailAsync(email);
+        await _OTPService.SendConfirmationOTP(user: user);
+    }
+
 
 
 
