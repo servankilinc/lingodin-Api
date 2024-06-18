@@ -11,10 +11,12 @@ namespace WebApi.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
+    private readonly IOTPService _oTPService;
     private readonly IOAuthService _oAuthService;
-    public AuthController(IAuthService authService, IOAuthService oAuthService)
+    public AuthController(IAuthService authService, IOTPService oTPService, IOAuthService oAuthService)
     { 
         _authService = authService;
+        _oTPService = oTPService;
         _oAuthService = oAuthService;
     }
 
@@ -109,5 +111,20 @@ public class AuthController : ControllerBase
     {
         var resultUserRegister = await _authService.CreateAuthorizedUserAsync(userRequest);
         return Ok(resultUserRegister);
+    }
+
+     
+    [HttpGet("GetOTPExpirationTimeById")]
+    public async Task<IActionResult> GetOTPExpirationTimeById(Guid userId)
+    {
+        var expiryTime = await _oTPService.GetOTPExpirationTime(userId);
+        return Ok(expiryTime);
+    }
+     
+    [HttpGet("GetOTPExpirationTimeByMail")]
+    public async Task<IActionResult> GetOTPExpirationTimeByMail(string email)
+    {
+        var expiryTime = await _oTPService.GetOTPExpirationTime(email);
+        return Ok(expiryTime);
     }
 }

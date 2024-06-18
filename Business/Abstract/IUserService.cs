@@ -8,6 +8,7 @@ namespace Business.Abstract;
 public interface IUserService
 {
     Task<UserResponseDto> GetUserByIdAsync(Guid userId);
+    Task<UserResponseDto> GetUserByMailAsync(string email);
     Task<User> GetUserDetailByIdAsync(Guid userId);
     Task<User> GetUserDetailByEmailAsync(string email);
     Task<List<UserResponseDto>> GetAllUsersAsync();

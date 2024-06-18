@@ -13,11 +13,13 @@ namespace Business.Concrete;
 [BusinessExceptionHandler]
 public class OTPService : IOTPService
 {
-    private readonly IOTPDal _OTPDal;  
+    private readonly IOTPDal _OTPDal;
+    private readonly IUserService _userService;
     private readonly MailMessageBrokerProducer _mailMQProducerService;  
-    public OTPService(IOTPDal OTPDal ,MailMessageBrokerProducer mailMQProducerService)
+    public OTPService(IOTPDal OTPDal, IUserService userService, MailMessageBrokerProducer mailMQProducerService)
     {
         _OTPDal = OTPDal;
+        _userService = userService;
         _mailMQProducerService = mailMQProducerService;
     }
 
@@ -51,5 +53,21 @@ public class OTPService : IOTPService
 
         if (otpControlDto.Code != storedOTP.Code) throw new BusinessException("Code is not correct");
         if (DateTime.UtcNow.AddMinutes(1) >= storedOTP.ExpiryTime) throw new BusinessException("Expiration Time Over");
+    }
+
+
+    public async Task<DateTime> GetOTPExpirationTime(string email)
+    {
+        var user = await _userService.GetUserByMailAsync(email);
+        OTP storedOTP = await _OTPDal.GetAsync(filter: o => o.UserId == user.Id);
+        if (storedOTP == null) throw new BusinessException("Not Exist Any Code in System");
+        return storedOTP.ExpiryTime;
+    }
+
+    public async Task<DateTime> GetOTPExpirationTime(Guid userId)
+    {
+        OTP storedOTP = await _OTPDal.GetAsync(filter: o => o.UserId == userId);
+        if (storedOTP == null) throw new BusinessException("Not Exist Any Code in System");
+        return storedOTP.ExpiryTime; 
     }
 }

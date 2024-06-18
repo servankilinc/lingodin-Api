@@ -21,6 +21,7 @@ public class UserService : IUserService
     private const string UserByDetailGroup = "User-Cache-Detail-Group-Key";
     private const string AllUserList = "AllUserListCacheKey";
     private const string UserInfoById = "UserInfoByIdCacheKey";
+    private const string UserInfoByMail = "UserInfoByMailCacheKey";
     private const string UserDetailById = "UserDetailByIdCacheKey";
     private const string UserDetailByEmail = "UserDetailByEmailCacheKey";
     private const string IsUserExistByEmail = "IsUserExistByEmailCacheKey";
@@ -40,6 +41,14 @@ public class UserService : IUserService
         return responseDto;
     }
 
+    [Cache(UserInfoByMail, [UserByDetailGroup])]
+    public async Task<UserResponseDto> GetUserByMailAsync(string mail)
+    {
+        if (string.IsNullOrWhiteSpace(mail)) throw new ArgumentNullException(nameof(mail));
+        User user = await _userDal.GetAsync(filter: u => u.Email == mail);
+        UserResponseDto responseDto = _mapper.Map<UserResponseDto>(user);
+        return responseDto;
+    }
 
     [Cache(AllUserList, [UserGroup])]
     public async Task<List<UserResponseDto>> GetAllUsersAsync()
