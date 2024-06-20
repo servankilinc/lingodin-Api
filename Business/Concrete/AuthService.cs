@@ -94,15 +94,15 @@ public class AuthService : IAuthService
         if (resultByMail == false) throw new BusinessException("Email Address is Not Exist");
 
         User user = await _userService.GetUserDetailByEmailAsync(loginRequest.Email);
+        bool isValid = HashingHelper.VerifyPasswordHash(loginRequest.Password, user.PasswordHash!, user.PasswordSalt!);
+        if(isValid == false ) throw new BusinessException("Password is not Correct");
+
         if (user.IsVerifiedUser == false)
         {
             await _OTPService.SendConfirmationOTP(user: user); // send verify code again automaticly
             throw new BusinessException("NotVerifiedUser");
         }
         if (user.AutheticatorType != AutheticatorType.Email) throw new BusinessException("OauthUserCannotLoginByMail");
-
-        bool isValid = HashingHelper.VerifyPasswordHash(loginRequest.Password, user.PasswordHash!, user.PasswordSalt!);
-        if(isValid == false ) throw new BusinessException("Password is not Correct");
 
         AccessTokenResultModel accessTokenResult = await _tokenService.CreateAccessToken(user);
 
@@ -121,7 +121,7 @@ public class AuthService : IAuthService
     public async Task<UserAuthResponseModel> VerifyUserAccount(OtpControlByEmail otpControlByEmail)
     {
         User existingUser = await _userService.GetUserDetailByEmailAsync(otpControlByEmail.Email);
-        if (existingUser == null) throw new BusinessException("Email is not exist! ");
+        if (existingUser == null) throw new BusinessException("Email does not exist!");
 
         await _OTPService.VerifyConfirmationOTP(new OtpControlDto(userId: existingUser.Id, code: otpControlByEmail.Code));
         // otp verified...
@@ -188,8 +188,8 @@ public class AuthService : IAuthService
 
         User user = await _userService.GetUserDetailByEmailAsync(email);
         if (user == null) throw new BusinessException("Email is not exist!");
-        if (user.IsVerifiedUser == false) throw new BusinessException("NotVerifiedUser");
         if (user.AutheticatorType != AutheticatorType.Email) throw new BusinessException("OauthUserCannotResetPassword");
+        if (user.IsVerifiedUser == false) throw new BusinessException("NotVerifiedUser");
 
         await _OTPService.SendConfirmationOTP(user: user);
     } 

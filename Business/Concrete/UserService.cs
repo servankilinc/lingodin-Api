@@ -18,7 +18,6 @@ public class UserService : IUserService
     private readonly IUserDal _userDal;
     private readonly IMapper _mapper;
     private const string UserGroup = "User-Cache-Group-Key";
-    private const string UserByDetailGroup = "User-Cache-Detail-Group-Key";
     private const string AllUserList = "AllUserListCacheKey";
     private const string UserInfoById = "UserInfoByIdCacheKey";
     private const string UserInfoByMail = "UserInfoByMailCacheKey";
@@ -32,7 +31,7 @@ public class UserService : IUserService
     }
 
 
-    [Cache(UserInfoById, [UserByDetailGroup])]
+    [Cache(UserInfoById, [UserGroup])]
     public async Task<UserResponseDto> GetUserByIdAsync(Guid userId)
     {
         if (userId == Guid.Empty) throw new ArgumentNullException(nameof(userId));
@@ -41,7 +40,8 @@ public class UserService : IUserService
         return responseDto;
     }
 
-    [Cache(UserInfoByMail, [UserByDetailGroup])]
+
+    [Cache(UserInfoByMail, [UserGroup])]
     public async Task<UserResponseDto> GetUserByMailAsync(string mail)
     {
         if (string.IsNullOrWhiteSpace(mail)) throw new ArgumentNullException(nameof(mail));
@@ -49,6 +49,7 @@ public class UserService : IUserService
         UserResponseDto responseDto = _mapper.Map<UserResponseDto>(user);
         return responseDto;
     }
+
 
     [Cache(AllUserList, [UserGroup])]
     public async Task<List<UserResponseDto>> GetAllUsersAsync()
@@ -58,7 +59,8 @@ public class UserService : IUserService
         return mappedList;
     }
 
-    [Cache(UserDetailByEmail, [UserByDetailGroup])]
+
+    [Cache(UserDetailByEmail, [UserGroup])]
     public async Task<User> GetUserDetailByEmailAsync(string email)
     {
         if (string.IsNullOrWhiteSpace(email)) throw new ArgumentNullException(nameof(email));
@@ -67,7 +69,7 @@ public class UserService : IUserService
     }
 
 
-    [Cache(UserDetailById, [UserByDetailGroup])]
+    [Cache(UserDetailById, [UserGroup])]
     public async Task<User> GetUserDetailByIdAsync(Guid userId)
     {
         if (userId == Guid.Empty) throw new ArgumentNullException(nameof(userId));
@@ -126,6 +128,7 @@ public class UserService : IUserService
     }
 
 
+    [CacheRemoveGroup([UserGroup])]
     public async Task<User> UpdateUserDetailAsync(User user) // not open to public
     {
         User updatedUser = await _userDal.UpdateAsync(user);
@@ -133,13 +136,14 @@ public class UserService : IUserService
     }
 
 
-    [CacheRemoveGroup([UserGroup, UserByDetailGroup])]
+    [CacheRemoveGroup([UserGroup])]
     public async Task DeleteUserAsync(Guid userId)
     {
         if (userId == Guid.Empty) throw new ArgumentNullException(nameof(userId));
         var user = new User() { Id = userId };
         await _userDal.DeleteAsync(user);
     }
+
 
     [Cache(IsUserExistByEmail, [UserGroup])]
     public async Task<bool> IsUserExistByEmailAsync(string email)

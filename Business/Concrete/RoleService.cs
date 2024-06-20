@@ -28,6 +28,15 @@ public class RoleService : IRoleService
     }
 
 
+    [Cache(AllRoleList, [RoleGroup])]
+    public async Task<ICollection<RoleResponseDto>> GetAllRolesAsync()
+    {
+        var roleList = await _roleDal.GetAllAsync();
+        var mappedList = roleList.Select(r => _mapper.Map<RoleResponseDto>(r)).ToList();
+        return mappedList;
+    }
+
+
     [Cache(RoleByName, [RoleGroup])]
     public async Task<RoleResponseDto> GetRoleByNameAsync(string name)
     {
@@ -35,14 +44,6 @@ public class RoleService : IRoleService
 
         var role = await _roleDal.GetAsync(filter: r  => r.Name == name);
         return _mapper.Map<RoleResponseDto>(role);
-    }
-
-    [Cache(AllRoleList, [RoleGroup])]
-    public async Task<ICollection<RoleResponseDto>> GetAllRolesAsync()
-    {
-        var roleList = await _roleDal.GetAllAsync();
-        var mappedList = roleList.Select(r => _mapper.Map<RoleResponseDto>(r)).ToList();
-        return mappedList;
     }
 
 
@@ -75,6 +76,7 @@ public class RoleService : IRoleService
 
         return mappedList;
     }
+
 
     [CacheRemoveGroup([RoleGroup])]
     [Validation(typeof(RoleCreateDto))]
