@@ -25,6 +25,7 @@ public interface IWordService
     Task<ICollection<WordResponseDto>> GetWordsByCategoryAsync(Guid categoryId);
     Task<ICollection<WordByUserModel>> GetWordsByCategoryForUserAsync(Guid categoryId, Guid userId);
     Task<ICollection<WordResponseDto>> GetFavoriteWordsForUserAsync(Guid userId);
+    Task<ICollection<WordResponseDto>> GetFavoriteWordsForUserByCategoryAsync(Guid categoryId, Guid userId);
     Task<ICollection<WordByUserModel>> GetLearnedWordsForUserAsync(Guid userId);
 
     // 3) Favorite Methods

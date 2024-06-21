@@ -21,6 +21,13 @@ public class FavoriteController : ControllerBase
         return Ok(result);
     }
 
+    [HttpGet("GetFavoriteWordsForUserByCategoryAsync")]
+    public async Task<IActionResult> GetFavoriteWordsForUserByCategoryAsync([FromQuery] Guid categoryId, Guid userId)
+    {
+        var result = await _wordService.GetFavoriteWordsForUserByCategoryAsync(categoryId, userId);
+        return Ok(result);
+    }
+
     [HttpPost("AddWordAsFavorite")] // old name InsertFavorite
     public async Task<IActionResult> AddWordAsFavorite([FromBody] FavoriteWordRequestDto favoriteWordRequest)
     {

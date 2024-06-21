@@ -226,6 +226,7 @@ public class WordService : IWordService
     {
         if (userId == Guid.Empty) throw new ArgumentNullException(nameof(userId));
 
+        // -------- cache on before --------
         string _cacheKey = WordCacheKeys.FavoriteWordListForUser(userId);
         var resultCache = _cacheService.GetFromCache(_cacheKey);
         if (resultCache.IsSuccess)
@@ -233,6 +234,7 @@ public class WordService : IWordService
             var data = JsonConvert.DeserializeObject<ICollection<WordResponseDto>>(resultCache.Source!);
             if (data != null) return data;
         }
+        // -------- cache on before --------
 
         var list = await _favoriteDal.GetAllAsync(
             filter: f => f.UserId == userId,
@@ -240,7 +242,38 @@ public class WordService : IWordService
         );
         var mappedList = list.Select(f => _mapper.Map<WordResponseDto>(f.Word)).ToList();
 
+        // -------- cache on success --------
         _cacheService.AddToCache(_cacheKey, [WordCacheKeys.WordGroup, WordCacheKeys.WordUserGroup(userId)], mappedList);
+        // -------- cache on success --------
+
+        return mappedList;
+    }
+
+    public async Task<ICollection<WordResponseDto>> GetFavoriteWordsForUserByCategoryAsync(Guid categoryId, Guid userId)
+    {
+        if (categoryId == Guid.Empty) throw new ArgumentNullException(nameof(categoryId));
+        if (userId == Guid.Empty) throw new ArgumentNullException(nameof(userId));
+
+        // -------- cache on before --------
+        string _cacheKey = WordCacheKeys.FavoriteWordListForByCategoryUser(categoryId, userId);
+        var resultCache = _cacheService.GetFromCache(_cacheKey);
+        if (resultCache.IsSuccess)
+        {
+            var data = JsonConvert.DeserializeObject<ICollection<WordResponseDto>>(resultCache.Source!);
+            if (data != null) return data;
+        }
+        // -------- cache on before --------
+
+        var list = await _favoriteDal.GetAllAsync(
+            filter: f => f.UserId == userId && f.Word!.CategoryId == categoryId,
+            include: f => f.Include(f => f.Word)!
+        );
+        var mappedList = list.Select(f => _mapper.Map<WordResponseDto>(f.Word)).ToList();
+
+        // -------- cache on success --------
+        _cacheService.AddToCache(_cacheKey, [WordCacheKeys.WordGroup, WordCacheKeys.WordUserGroup(userId)], mappedList);
+        // -------- cache on success --------
+
         return mappedList;
     }
 

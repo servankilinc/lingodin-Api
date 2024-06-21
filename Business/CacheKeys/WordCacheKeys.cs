@@ -8,5 +8,6 @@ public static class WordCacheKeys
     public static string WordUserGroup(Guid userId) => $"WordListForUserBaseCacheGroupKey-{userId}";
     public static string WordListByCategoryForUser(Guid categoryId, Guid userId) => $"WordListByCategoryForUserCacheKey-{categoryId}-{userId}";
     public static string FavoriteWordListForUser(Guid userId) => $"FavoriteWordListForUserCacheKey-{userId}";
+    public static string FavoriteWordListForByCategoryUser(Guid categoryId, Guid userId) => $"FavoriteWordListForUserByCategoryCacheKey-{categoryId}-{userId}";
     public static string LearnedWordListForUser(Guid userId) => $"LearnedWordListForUserCacheKey-{userId}";
 }
