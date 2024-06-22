@@ -337,8 +337,9 @@ public class WordService : IWordService
             UserId = favoriteWordRequestDto.UserId,
             WordId = favoriteWordRequestDto.WordId
         };
-        await _favoriteDal.DeleteAsync(objToDelete);
-         
+        bool isExist = await _favoriteDal.IsExistAsync(filter: f => f.UserId == objToDelete.UserId && f.WordId == objToDelete.WordId);
+        if (isExist) await _favoriteDal.DeleteAsync(objToDelete);
+
         _cacheService.RemoveCacheGroupKeys([WordCacheKeys.WordUserGroup(objToDelete.UserId)]);
     }
 
@@ -369,7 +370,8 @@ public class WordService : IWordService
             UserId = learningWordRequestDto.UserId,
             WordId = learningWordRequestDto.WordId
         };
-        await _learningDal.DeleteAsync(objToDelete);
+        bool isExist = await _learningDal.IsExistAsync(filter: f => f.UserId == objToDelete.UserId && f.WordId == objToDelete.WordId);
+        if (isExist) await _learningDal.DeleteAsync(objToDelete);
 
         _cacheService.RemoveFromCache(WordCacheKeys.LearnedWordListForUser(objToDelete.UserId));
         _cacheService.RemoveFromCache(CategoryCacheKeys.AllCategoryListForUser(objToDelete.UserId));
