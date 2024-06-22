@@ -40,6 +40,7 @@ public class DataAccessExceptionHandlerInspector : IInterceptor
         }
         catch (Exception exception)
         {
+            if (exception.InnerException != null) throw new DataAccessException(exception.Message + exception.InnerException.Message);
             throw new DataAccessException(exception.Message);
         }
     }
@@ -53,6 +54,7 @@ public class DataAccessExceptionHandlerInspector : IInterceptor
         }
         catch (Exception exception)
         {
+            if (exception.InnerException != null) throw new DataAccessException(exception.Message + exception.InnerException.Message);
             throw new DataAccessException(exception.Message);
         }
     }
@@ -67,6 +69,7 @@ public class DataAccessExceptionHandlerInspector : IInterceptor
         }
         catch (Exception exception)
         {
+            if (exception.InnerException != null) throw new DataAccessException(exception.Message + exception.InnerException.Message);
             throw new DataAccessException(exception.Message);
         }
     }

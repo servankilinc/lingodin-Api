@@ -322,7 +322,8 @@ public class WordService : IWordService
             UserId = favoriteWordRequestDto.UserId,
             WordId = favoriteWordRequestDto.WordId
         };
-        await _favoriteDal.AddAsync(objToInsert);
+        bool isExist = await _favoriteDal.IsExistAsync(filter: f => f.UserId == objToInsert.UserId && f.WordId == objToInsert.WordId);
+        if (isExist == false) await _favoriteDal.AddAsync(objToInsert);
 
         _cacheService.RemoveCacheGroupKeys([WordCacheKeys.WordUserGroup(objToInsert.UserId)]);
     }
@@ -351,7 +352,8 @@ public class WordService : IWordService
             UserId = learningWordRequestDto.UserId,
             WordId = learningWordRequestDto.WordId
         };
-        await _learningDal.AddAsync(objToInsert);
+        bool isExist = await _learningDal.IsExistAsync(filter: f => f.UserId == objToInsert.UserId && f.WordId == objToInsert.WordId);
+        if (isExist == false) await _learningDal.AddAsync(objToInsert);
 
         _cacheService.RemoveFromCache(WordCacheKeys.LearnedWordListForUser(objToInsert.UserId));
         _cacheService.RemoveFromCache(CategoryCacheKeys.AllCategoryListForUser(objToInsert.UserId)); 

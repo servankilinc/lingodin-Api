@@ -41,6 +41,7 @@ public class BusinessExceptionHandlerInspector : IInterceptor
         }
         catch (Exception exception)
         {
+            if (exception.InnerException != null) throw new BusinessException(exception.Message + exception.InnerException.Message);
             throw new BusinessException(exception.Message);
         }
     } 
@@ -53,7 +54,8 @@ public class BusinessExceptionHandlerInspector : IInterceptor
             await (Task)invocation.ReturnValue;
         }
         catch (Exception exception)
-        {
+        { 
+            if (exception.InnerException != null) throw new BusinessException(exception.Message + exception.InnerException.Message);
             throw new BusinessException(exception.Message);
         }
     }
@@ -68,6 +70,7 @@ public class BusinessExceptionHandlerInspector : IInterceptor
         }
         catch (Exception exception)
         {
+            if (exception.InnerException != null) throw new BusinessException(exception.Message + exception.InnerException.Message);
             throw new BusinessException(exception.Message);
         } 
     }
