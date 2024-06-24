@@ -35,9 +35,7 @@ public class OAuthService : IOAuthService
 
         GoogleJsonWebSignature.Payload payload = await GoogleJsonWebSignature.ValidateAsync(googleLoginRequest.IdToken, _googleValidationSettings);
 
-        string userFullName = $"{payload.Name} {payload.FamilyName}";
-
-        var model = await HandleUser(payload.Email, userFullName, AutheticatorType.Google);
+        var model = await HandleUser(payload.Email, payload.Name, AutheticatorType.Google);
         return model;
     }
 

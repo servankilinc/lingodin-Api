@@ -4,7 +4,6 @@ using Core.CrossCuttingConcerns;
 using Core.Exceptions;
 using Core.Utils.Auth;
 using Core.Utils.Auth.Hashing;
-using Microsoft.AspNetCore.Identity.Data;
 using Model.Dtos.RoleDtos;
 using Model.Dtos.UserDtos;
 using Model.Entities;
@@ -57,6 +56,7 @@ public class AuthService : IAuthService
         if (userId == Guid.Empty) throw new ArgumentNullException(nameof(userId));
 
         User user = await _userService.GetUserDetailByIdAsync(userId);
+        if (user.IsVerifiedUser) throw new Exception("User Already Verified");
         await _OTPService.SendConfirmationOTP(user: user);
     }
 
@@ -68,6 +68,7 @@ public class AuthService : IAuthService
         await _OTPService.VerifyConfirmationOTP(otpControlDto);
         // otp verified...
         User existingUser = await _userService.GetUserDetailByIdAsync(otpControlDto.UserId);
+        if (existingUser.IsVerifiedUser) throw new Exception("User Already Verified");
         existingUser.IsVerifiedUser = true;
         User updatedUser = await _userService.UpdateUserDetailAsync(existingUser);
 
@@ -95,7 +96,7 @@ public class AuthService : IAuthService
 
         User user = await _userService.GetUserDetailByEmailAsync(loginRequest.Email);
         bool isValid = HashingHelper.VerifyPasswordHash(loginRequest.Password, user.PasswordHash!, user.PasswordSalt!);
-        if(isValid == false ) throw new BusinessException("Password is not Correct");
+        if (isValid == false) throw new BusinessException("Password is not Correct");
 
         if (user.IsVerifiedUser == false)
         {
@@ -122,6 +123,7 @@ public class AuthService : IAuthService
     {
         User existingUser = await _userService.GetUserDetailByEmailAsync(otpControlByEmail.Email);
         if (existingUser == null) throw new BusinessException("Email does not exist!");
+        if (existingUser.IsVerifiedUser) throw new Exception("User Already Verified");
 
         await _OTPService.VerifyConfirmationOTP(new OtpControlDto(userId: existingUser.Id, code: otpControlByEmail.Code));
         // otp verified...
@@ -146,6 +148,7 @@ public class AuthService : IAuthService
         if (string.IsNullOrWhiteSpace(email)) throw new ArgumentNullException(nameof(email));
 
         User user = await _userService.GetUserDetailByEmailAsync(email);
+        if (user.IsVerifiedUser) throw new Exception("User Already Verified");
         await _OTPService.SendConfirmationOTP(user: user);
     }
 
