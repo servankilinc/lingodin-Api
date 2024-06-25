@@ -46,7 +46,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> UpdateUser([FromBody] UserUpdateDto userUpdateDto)
     {
         var requesterId = User.Claims.Where(i => i.Type == ClaimTypes.NameIdentifier).FirstOrDefault();
-        if (requesterId?.Value != userUpdateDto.Id.ToString())
+        if (requesterId?.Value != userUpdateDto.Id.ToString() || User.IsInRole("Admin"))
         {
             return BadRequest("Authentication");
         }
@@ -60,10 +60,11 @@ public class UserController : ControllerBase
     public async Task<IActionResult> Delete([FromQuery] Guid userId)
     {
         var requesterId = User.Claims.Where(i => i.Type == ClaimTypes.NameIdentifier).FirstOrDefault();
-        if (requesterId?.Value != userId.ToString())
+        if (requesterId?.Value != userId.ToString() || User.IsInRole("Admin"))
         {
             return BadRequest("Authentication");
         }
+
         await _userService.DeleteUserAsync(userId);
         return Ok();
     }

@@ -16,7 +16,9 @@ public interface IAuthService
     Task<UserAuthResponseModel> VerifyUserAccount(OtpControlByEmail otpControlByEmail);
     Task SendAccountVerifyCodeAgain(string email);
 
+    // these two method not public authorized for admin
     Task<UserResponseDto> CreateAuthorizedUserAsync(UserCreateDto userCreateDto);
+    Task ChangeUserAccountVerifyStatusAsync(Guid userId);
 
     // SendPasswordResetMail ----> ResetPassword
     Task SendPasswordResetMail(string email);

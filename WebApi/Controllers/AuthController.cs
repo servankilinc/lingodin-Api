@@ -113,7 +113,17 @@ public class AuthController : ControllerBase
         return Ok(resultUserRegister);
     }
 
-     
+
+
+    [Authorize(Roles = "Admin")]
+    [HttpPost("ChangeUserAccountVerifyStatus")]
+    public async Task<IActionResult> ChangeUserAccountVerifyStatus([FromQuery] Guid userId)
+    {
+        await _authService.ChangeUserAccountVerifyStatusAsync(userId);
+        return Ok();
+    }
+
+
     [HttpGet("GetOTPExpirationTimeById")]
     public async Task<IActionResult> GetOTPExpirationTimeById(Guid userId)
     {

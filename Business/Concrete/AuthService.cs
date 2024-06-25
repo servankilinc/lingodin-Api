@@ -184,6 +184,16 @@ public class AuthService : IAuthService
     }
 
 
+    public async Task ChangeUserAccountVerifyStatusAsync(Guid userId)
+    {
+        if (userId == Guid.Empty) throw new ArgumentNullException(nameof(userId));
+        User existUser = await _userService.GetUserDetailByIdAsync(userId);
+        if (existUser == null) throw new Exception("User does not found");
+        existUser.IsVerifiedUser = !existUser.IsVerifiedUser;
+        await _userService.UpdateUserDetailAsync(existUser);
+    }
+
+
 
     public async Task SendPasswordResetMail(string email)
     {
