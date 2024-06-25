@@ -116,7 +116,7 @@ public class AuthController : ControllerBase
 
 
     [Authorize(Roles = "Admin")]
-    [HttpPost("ChangeUserAccountVerifyStatus")]
+    [HttpGet("ChangeUserAccountVerifyStatus")]
     public async Task<IActionResult> ChangeUserAccountVerifyStatus([FromQuery] Guid userId)
     {
         await _authService.ChangeUserAccountVerifyStatusAsync(userId);
