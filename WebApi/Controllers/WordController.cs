@@ -11,9 +11,11 @@ namespace WebApi.Controllers;
 public class WordController : ControllerBase
 {
     private readonly IWordService _wordService;
-    public WordController(IWordService wordService) => _wordService = wordService;
-
-
+    
+    public WordController(IWordService wordService)
+    {
+        _wordService = wordService;
+    }
 
     [Authorize]
     [HttpGet("Get")]
@@ -82,7 +84,34 @@ public class WordController : ControllerBase
     [HttpPost("ImageUpdate")]
     public async Task<IActionResult> ImageUpdate(IFormFile file, Guid wordId)
     {
-        var result = await _wordService.UpdateImageAsync(file, wordId);
+        if (file == null || file.Length == 0)
+        {
+            return BadRequest("No file provided.");
+        }
+
+        var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "Word");
+
+        if (!Directory.Exists(uploadFolder))
+        {
+            Directory.CreateDirectory(uploadFolder);
+        }
+
+        var fileExtension = Path.GetExtension(file.FileName);
+        var fileName = $"{wordId}{fileExtension}";
+        var filePath = Path.Combine(uploadFolder, fileName);
+        
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await file.CopyToAsync(stream);
+        }
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await file.CopyToAsync(stream);
+        }
+
+        var fileUrl = $"/Word/{fileName}";
+        var result = await _wordService.UpdateImageAsync(wordId, fileUrl);
         return Ok(result);
     }
 
@@ -91,7 +120,15 @@ public class WordController : ControllerBase
     [HttpDelete("ImageDelete")]
     public async Task<IActionResult> ImageDelete(Guid wordId, string url)
     {
-        var result = await _wordService.DeleteImageAsync(wordId, url);
-        return Ok(result);
+        var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", url.TrimStart('/')); // Başındaki /'yi çıkarıyoruz
+
+        if (System.IO.File.Exists(filePath))
+        {
+            System.IO.File.Delete(filePath);
+            var result = await _wordService.DeleteImageAsync(wordId);
+            return Ok(result);
+        }
+
+        return BadRequest("File not found.");
     }
 }

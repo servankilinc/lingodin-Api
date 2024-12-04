@@ -15,7 +15,7 @@ public class UserController : ControllerBase
     public UserController(IUserService userService) => _userService = userService;
 
 
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Authorized")]
     [HttpGet("GetAll")]
     public async Task<IActionResult> GetAll()
     {
@@ -23,7 +23,7 @@ public class UserController : ControllerBase
         return Ok(result);
     }
 
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Authorized")]
     [HttpPost("GetUserListByDetail")]
     public async Task<IActionResult> GetUserListByDetail(FSPModel fSPModel)
     {

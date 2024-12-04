@@ -9,28 +9,25 @@ using Core.Exceptions;
 using Core.CrossCuttingConcerns;
 using Business.CacheKeys;
 using Core.Utils.Caching;
-using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace Business.Concrete;
 
-[BusinessExceptionHandler]
+//[BusinessExceptionHandler]
 public class CategoryService : ICategoryService
 {
     private readonly ICategoryDal _categoryDal;
     private readonly ICacheService _cacheService;
-    private readonly IFileService _fileService;
     private readonly IMapper _mapper;
     private const string CategoryGroup = "Category-Cache-Group-Key";
     private const string CategoryUserGroup = "Category-User-Cache-Group-Key";
     private const string AllCategoryList = "AllCategoryListCacheKey";
     private const string CategoryInfoById = "CategoryInfoByIdCacheKey";
     private const string AllCategoryListForUser = "AllCategoryListForUserCacheKey";
-    public CategoryService(ICategoryDal categoryDal, ICacheService cacheService, IFileService fileService, IMapper mapper)
+    public CategoryService(ICategoryDal categoryDal, ICacheService cacheService, IMapper mapper)
     {
         _categoryDal = categoryDal;
         _cacheService = cacheService;
-        _fileService = fileService;
         _mapper = mapper; 
     }
 
@@ -89,20 +86,20 @@ public class CategoryService : ICategoryService
 
 
     [CacheRemoveGroup([CategoryGroup, CategoryUserGroup])]
-    public async Task<CategoryResponseDto> UpdateImageAsync(IFormFile file, Guid categoryId)
+    public async Task<CategoryResponseDto> UpdateImageAsync(Guid categoryId, string imageUrl) // IFormFile file,
     {
         if (categoryId == Guid.Empty) throw new ArgumentNullException(nameof(categoryId));
-        if (file == null) throw new ArgumentNullException(nameof(file));
+        //if (file == null) throw new ArgumentNullException(nameof(file));
 
         Category existingCategory = await _categoryDal.GetAsync(filter: c => c.Id == categoryId);
         if (existingCategory == null) throw new BusinessException("Data(existing) for update Not Found !");
 
-        string imageUrl = await _fileService.UploadAsync(
-            file: file,
-            containerName: "images",
-            blobDir: "category",
-            customFileName: $"img-{categoryId}"
-        );
+        //string imageUrl = await _fileService.UploadAsync(
+        //    file: file,
+        //    containerName: "images",
+        //    blobDir: "category",
+        //    customFileName: $"img-{categoryId}"
+        //);
         existingCategory.HasImage = true;
         existingCategory.Image = imageUrl;
 
@@ -112,20 +109,20 @@ public class CategoryService : ICategoryService
     }
 
     [CacheRemoveGroup([CategoryGroup, CategoryUserGroup])]
-    public async Task<CategoryResponseDto> DeleteImageAsync(Guid categoryId, string url)
+    public async Task<CategoryResponseDto> DeleteImageAsync(Guid categoryId) // , string url
     {
         if (categoryId == Guid.Empty) throw new ArgumentNullException(nameof(categoryId));
-        if (string.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
+        //if (string.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
 
-        string fileName = Path.GetFileName(url);
-        string temp = categoryId.ToString();
-        if (fileName.Contains(temp) == false ) throw new BusinessException("Url and category did not match!");
+        //string fileName = Path.GetFileName(url);
+        //string temp = categoryId.ToString();
+        //if (fileName.Contains(temp) == false ) throw new BusinessException("Url and category did not match!");
 
         Category existingCategory = await _categoryDal.GetAsync(filter: c => c.Id == categoryId);
         if (existingCategory == null) throw new BusinessException("Data(existing) for update Not Found !");         
 
-        var result = await _fileService.DeleteAsync(containerName: "images", blobFilename: $"category/{fileName}");
-        if (result == false) throw new BusinessException("File has not been deleted!");
+        //var result = await _fileService.DeleteAsync(containerName: "images", blobFilename: $"category/{fileName}");
+        //if (result == false) throw new BusinessException("File has not been deleted!");
         existingCategory.HasImage = false;
         existingCategory.Image = string.Empty;
         Category updatedCategory = await _categoryDal.UpdateAsync(existingCategory);

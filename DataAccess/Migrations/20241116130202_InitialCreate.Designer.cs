@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(BaseDBContext))]
-    [Migration("20240519085436_InitialCreate")]
+    [Migration("20241116130202_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.5")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -87,6 +87,26 @@ namespace DataAccess.Migrations
                     b.ToTable("Learneds", (string)null);
                 });
 
+            modelBuilder.Entity("Model.Entities.OTP", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("UserId");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Code");
+
+                    b.Property<DateTime>("ExpiryTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("ExpiryTime");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("Otp", (string)null);
+                });
+
             modelBuilder.Entity("Model.Entities.Role", b =>
                 {
                     b.Property<Guid>("Id")
@@ -122,6 +142,10 @@ namespace DataAccess.Migrations
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("FullName");
+
+                    b.Property<bool>("IsVerifiedUser")
+                        .HasColumnType("bit")
+                        .HasColumnName("IsVerifiedUser");
 
                     b.Property<byte[]>("PasswordHash")
                         .HasColumnType("varbinary(max)")

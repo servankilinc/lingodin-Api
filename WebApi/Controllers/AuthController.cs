@@ -24,33 +24,33 @@ public class AuthController : ControllerBase
     [HttpPost("SignUp")]
     public async Task<IActionResult> SignUp([FromBody] UserCreateDto userRequest)
     {
-        await _authService.SignupAsync(userRequest);
-        return Ok();
+        var result = await _authService.SignupAsync(userRequest);
+        return Ok(result);
     }
 
 
-    [HttpPost("VerifyUser")]
-    public async Task<IActionResult> VerifyUser([FromBody] OtpControlDto otpControlDto)
-    {
-        var resultUserRegister =  await _authService.VerifyUserAccount(otpControlDto);
-        return Ok(resultUserRegister);
-    }
+    //[HttpPost("VerifyUser")]
+    //public async Task<IActionResult> VerifyUser([FromBody] OtpControlDto otpControlDto)
+    //{
+    //    var resultUserRegister =  await _authService.VerifyUserAccount(otpControlDto);
+    //    return Ok(resultUserRegister);
+    //}
 
 
-    [HttpGet("SendVerifyCodeAgain")]
-    public async Task<IActionResult> SendVerifyCodeAgain([FromQuery] Guid userId)
-    {
-        await _authService.SendAccountVerifyCodeAgain(userId);
-        return Ok();
-    }
+    //[HttpGet("SendVerifyCodeAgain")]
+    //public async Task<IActionResult> SendVerifyCodeAgain([FromQuery] Guid userId)
+    //{
+    //    await _authService.SendAccountVerifyCodeAgain(userId);
+    //    return Ok();
+    //}
 
 
-    [HttpGet("SendVerifyCodeAgainByMail")]
-    public async Task<IActionResult> SendVerifyCodeAgainByMail([FromQuery] string email)
-    {
-        await _authService.SendAccountVerifyCodeAgain(email);
-        return Ok();
-    }
+    //[HttpGet("SendVerifyCodeAgainByMail")]
+    //public async Task<IActionResult> SendVerifyCodeAgainByMail([FromQuery] string email)
+    //{
+    //    await _authService.SendAccountVerifyCodeAgain(email);
+    //    return Ok();
+    //}
 
 
     [HttpPost("Login")]
@@ -61,25 +61,26 @@ public class AuthController : ControllerBase
     }
 
 
-    [HttpPost("VerifyUserByMail")]
-    public async Task<IActionResult> VerifyUserByMail([FromBody] OtpControlByEmail controlByEmail)
-    {
-        var resultUserRegister = await _authService.VerifyUserAccount(controlByEmail);
-        return Ok(resultUserRegister);
-    }
+    //[HttpPost("VerifyUserByMail")]
+    //public async Task<IActionResult> VerifyUserByMail([FromBody] OtpControlByEmail controlByEmail)
+    //{
+    //    var resultUserRegister = await _authService.VerifyUserAccount(controlByEmail);
+    //    return Ok(resultUserRegister);
+    //}
 
 
     // Forget password processes...
 
-    [HttpGet("SendPasswordResetMail")]
-    public async Task<IActionResult> SendPasswordResetMail([FromQuery] string email)
-    {
-        if (string.IsNullOrEmpty(email)) throw new ArgumentException(nameof(email));
-        await _authService.SendPasswordResetMail(email);
-        return Ok();
-    }
+    //[HttpGet("SendPasswordResetMail")]
+    //public async Task<IActionResult> SendPasswordResetMail([FromQuery] string email)
+    //{
+    //    if (string.IsNullOrEmpty(email)) throw new ArgumentException(nameof(email));
+    //    await _authService.SendPasswordResetMail(email);
+    //    return Ok();
+    //}
 
 
+    [Authorize]
     [HttpPost("ResetPassword")]
     public async Task<IActionResult> ResetPassword([FromBody] UserPasswordResetDto userPasswordResetDto)
     {
@@ -89,20 +90,20 @@ public class AuthController : ControllerBase
 
 
 
-    [HttpPost("LoginByGoogle")]
-    public async Task<IActionResult> LoginByGoogle([FromBody] GoogleLoginRequest loginRequest)
-    {
-        var resultUserLogin = await _oAuthService.LoginByGoogle(loginRequest);
-        return Ok(resultUserLogin);
-    }
+    //[HttpPost("LoginByGoogle")]
+    //public async Task<IActionResult> LoginByGoogle([FromBody] GoogleLoginRequest loginRequest)
+    //{
+    //    var resultUserLogin = await _oAuthService.LoginByGoogle(loginRequest);
+    //    return Ok(resultUserLogin);
+    //}
     
 
-    [HttpPost("LoginByFacebook")]
-    public async Task<IActionResult> LoginByFacebook([FromBody] FacebookLoginRequest loginRequest)
-    {
-        var resultUserLogin = await _oAuthService.LoginByFacebook(loginRequest);
-        return Ok(resultUserLogin);
-    }
+    //[HttpPost("LoginByFacebook")]
+    //public async Task<IActionResult> LoginByFacebook([FromBody] FacebookLoginRequest loginRequest)
+    //{
+    //    var resultUserLogin = await _oAuthService.LoginByFacebook(loginRequest);
+    //    return Ok(resultUserLogin);
+    //}
 
 
     [Authorize(Roles = "Admin")]
@@ -115,7 +116,7 @@ public class AuthController : ControllerBase
 
 
 
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Authorized")]
     [HttpGet("ChangeUserAccountVerifyStatus")]
     public async Task<IActionResult> ChangeUserAccountVerifyStatus([FromQuery] Guid userId)
     {
@@ -124,17 +125,17 @@ public class AuthController : ControllerBase
     }
 
 
-    [HttpGet("GetOTPExpirationTimeById")]
-    public async Task<IActionResult> GetOTPExpirationTimeById(Guid userId)
-    {
-        var expiryTime = await _oTPService.GetOTPExpirationTime(userId);
-        return Ok(expiryTime);
-    }
+    //[HttpGet("GetOTPExpirationTimeById")]
+    //public async Task<IActionResult> GetOTPExpirationTimeById(Guid userId)
+    //{
+    //    var expiryTime = await _oTPService.GetOTPExpirationTime(userId);
+    //    return Ok(expiryTime);
+    //}
      
-    [HttpGet("GetOTPExpirationTimeByMail")]
-    public async Task<IActionResult> GetOTPExpirationTimeByMail(string email)
-    {
-        var expiryTime = await _oTPService.GetOTPExpirationTime(email);
-        return Ok(expiryTime);
-    }
+    //[HttpGet("GetOTPExpirationTimeByMail")]
+    //public async Task<IActionResult> GetOTPExpirationTimeByMail(string email)
+    //{
+    //    var expiryTime = await _oTPService.GetOTPExpirationTime(email);
+    //    return Ok(expiryTime);
+    //}
 }

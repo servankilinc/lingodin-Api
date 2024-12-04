@@ -23,7 +23,7 @@ public class RoleController : ControllerBase
     }
 
 
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [HttpGet("GetAllByUser")]
     public async Task<IActionResult> GetAllByUser([FromQuery] Guid userId)
     {
@@ -41,7 +41,7 @@ public class RoleController : ControllerBase
     }
 
 
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Authorized")]
     [HttpPost("InsertRole")]
     public async Task<IActionResult> InsertRole([FromBody] RoleCreateDto roleRequest)
     {

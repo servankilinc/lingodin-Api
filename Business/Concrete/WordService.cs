@@ -7,7 +7,6 @@ using Core.Utils;
 using Core.Utils.Caching;
 using Core.Utils.Pagination;
 using DataAccess.Abstract;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Model.Dtos.WordDtos;
 using Model.Entities;
@@ -16,28 +15,25 @@ using Newtonsoft.Json;
 
 namespace Business.Concrete;
 
-[BusinessExceptionHandler]
+//[BusinessExceptionHandler]
 public class WordService : IWordService
 {
     private readonly IWordDal _wordDal;
     private readonly IFavoriteDal _favoriteDal;
     private readonly ILearningDal _learningDal;
     private readonly ICacheService _cacheService;
-    private readonly IFileService _fileService;
     private readonly IMapper _mapper;
     private const string WordGroup = "Word-Cache-Group-Key";
     private const string CategoryUserGroup = "Category-User-Cache-Group-Key";
     private const string WordListByCategory = "WordListByCategoryCacheKey";
-    private const string AllWordList = "AllWordListCacheKey";
     private const string WordInfoById = "WordInfoByIdCacheKey";
 
-    public WordService(IWordDal wordDal, IFavoriteDal favoriteDal, ILearningDal learningDal, ICacheService cacheService, IFileService fileService, IMapper mapper)
+    public WordService(IWordDal wordDal, IFavoriteDal favoriteDal, ILearningDal learningDal, ICacheService cacheService, IMapper mapper)
     {
         _wordDal = wordDal;
         _favoriteDal = favoriteDal;
         _learningDal = learningDal;
         _cacheService = cacheService;
-        _fileService = fileService;
         _mapper = mapper;
     }
 
@@ -116,20 +112,20 @@ public class WordService : IWordService
 
 
     [CacheRemoveGroup([WordGroup])]
-    public async Task<WordResponseDto> UpdateImageAsync(IFormFile file, Guid wordId)
+    public async Task<WordResponseDto> UpdateImageAsync(Guid wordId, string imageUrl) // IFormFile file,
     {
         if (wordId == Guid.Empty) throw new ArgumentNullException(nameof(wordId));
-        if (file == null) throw new ArgumentNullException(nameof(file));
+        //if (file == null) throw new ArgumentNullException(nameof(file));
 
         Word existingWord = await _wordDal.GetAsync(filter: w => w.Id == wordId);
         if (existingWord == null) throw new BusinessException("Data(existing) for update Not Found !");
 
-        string imageUrl = await _fileService.UploadAsync(
-           file: file,
-           containerName: "images",
-           blobDir: "word",
-           customFileName: $"img-{wordId}"
-        );
+        //string imageUrl = await _fileService.UploadAsync(
+        //   file: file,
+        //   containerName: "images",
+        //   blobDir: "word",
+        //   customFileName: $"img-{wordId}"
+        //);
         existingWord.HasImage = true;
         existingWord.Image = imageUrl;
         Word updatedWord = await _wordDal.UpdateAsync(existingWord);
@@ -139,20 +135,20 @@ public class WordService : IWordService
 
 
     [CacheRemoveGroup([WordGroup])]
-    public async Task<WordResponseDto> DeleteImageAsync(Guid wordId, string url)
+    public async Task<WordResponseDto> DeleteImageAsync(Guid wordId) //, string url
     {
         if (wordId == Guid.Empty) throw new ArgumentNullException(nameof(wordId));
-        if (string.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
+        //if (string.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
 
-        string fileName = Path.GetFileName(url);
-        string temp = wordId.ToString();
-        if (fileName.Contains(temp) == false) throw new BusinessException("Url and word did not match!");
+        //string fileName = Path.GetFileName(url);
+        //string temp = wordId.ToString();
+        //if (fileName.Contains(temp) == false) throw new BusinessException("Url and word did not match!");
 
         Word existingWord = await _wordDal.GetAsync(filter: w => w.Id == wordId);
         if (existingWord == null) throw new BusinessException("Data(existing) for update Not Found !");
 
-        var result = await _fileService.DeleteAsync(containerName: "images", blobFilename: $"word/{fileName}");
-        if (result == false) throw new BusinessException("File has not been deleted!");
+        //var result = await _fileService.DeleteAsync(containerName: "images", blobFilename: $"word/{fileName}");
+        //if (result == false) throw new BusinessException("File has not been deleted!");
         
         existingWord.HasImage = false;
         existingWord.Image = string.Empty;
@@ -197,6 +193,7 @@ public class WordService : IWordService
         if (categoryId == Guid.Empty) throw new ArgumentNullException(nameof(categoryId));
         if (userId == Guid.Empty) throw new ArgumentNullException(nameof(userId));
 
+        // ---------- on before ----------
         string _cacheKey = WordCacheKeys.WordListByCategoryForUser(categoryId, userId);
         var resultCache = _cacheService.GetFromCache(_cacheKey);
         if (resultCache.IsSuccess)
@@ -204,6 +201,7 @@ public class WordService : IWordService
             var data = JsonConvert.DeserializeObject<ICollection<WordByUserModel>>(resultCache.Source!);
             if (data != null) return data;
         }
+        // ---------- on before ----------
 
         var list = await _wordDal.GetAllAsync(
             filter: w => w.CategoryId == categoryId,
@@ -216,8 +214,10 @@ public class WordService : IWordService
                 IsWordAddedFav = w.Favorites == null ? false : w.Favorites.Any(f => f.UserId == userId)
             }
         ).ToList();
-        
+
+        // ---------- on end ----------
         _cacheService.AddToCache(_cacheKey, [WordCacheKeys.WordGroup, WordCacheKeys.WordUserGroup(userId)], model); // purpose: related user do any favorite process dont remove all cached data just this user...
+        // ---------- on end ----------
         return model;
     }
 

@@ -11,7 +11,7 @@ using Model.ViewModels;
 
 namespace Business.Concrete;
 
-[BusinessExceptionHandler]
+//[BusinessExceptionHandler]
 public class AuthService : IAuthService
 {
     private readonly IRoleService _roleService;
@@ -31,7 +31,7 @@ public class AuthService : IAuthService
 
 
     [Validation(typeof(UserCreateDto))]
-    public async Task SignupAsync(UserCreateDto userCreateDto)
+    public async Task<UserAuthResponseModel> SignupAsync(UserCreateDto userCreateDto)
     {
         // !!! Email unique(IsExist) control doing by _userService.InsertUserAsync 
 
@@ -41,48 +41,66 @@ public class AuthService : IAuthService
         User userToInsert = _mapper.Map<User>(userCreateDto);
         userToInsert.PasswordHash = passwordHash;
         userToInsert.PasswordSalt = passwordSalt;
-        userToInsert.IsVerifiedUser = false;
+        //userToInsert.IsVerifiedUser = false;
+        userToInsert.IsVerifiedUser = true; // *** IMPORTANT ***  when you add verification set this line
+
         userToInsert.AutheticatorType = AutheticatorType.Email;
 
         User insertedUser = await _userService.InsertUserAsync(userToInsert);
 
-        await _OTPService.SendConfirmationOTP(user: insertedUser);
-    }
+        var role = await _roleService.InsertRoleAsync(new RoleCreateDto() { Name = "User" });// if role exist not problem
 
+        await _roleService.AddRoleToUserAsync(new RoleUserRequestDto() { RoleId = role.Id, UserId = insertedUser.Id });
 
+        //await _OTPService.SendConfirmationOTP(user: insertedUser);
 
-    public async Task SendAccountVerifyCodeAgain(Guid userId)
-    {
-        if (userId == Guid.Empty) throw new ArgumentNullException(nameof(userId));
-
-        User user = await _userService.GetUserDetailByIdAsync(userId);
-        if (user.IsVerifiedUser) throw new Exception("User Already Verified");
-        await _OTPService.SendConfirmationOTP(user: user);
-    }
-
-
-
-    [Validation(typeof(OtpControlDto))]
-    public async Task<UserAuthResponseModel> VerifyUserAccount(OtpControlDto otpControlDto)
-    {
-        await _OTPService.VerifyConfirmationOTP(otpControlDto);
-        // otp verified...
-        User existingUser = await _userService.GetUserDetailByIdAsync(otpControlDto.UserId);
-        if (existingUser.IsVerifiedUser) throw new Exception("User Already Verified");
-        existingUser.IsVerifiedUser = true;
-        User updatedUser = await _userService.UpdateUserDetailAsync(existingUser);
-
-        AccessTokenResultModel accessTokenResult = await _tokenService.CreateAccessToken(updatedUser);
+        // *** IMPORTANT *** Remove folowing code when you add verification and set return type
+        AccessTokenResultModel accessTokenResult = await _tokenService.CreateAccessToken(insertedUser);
 
         UserAuthResponseModel responseModel = new UserAuthResponseModel
         {
-            User = _mapper.Map<UserResponseDto>(updatedUser),
+            User = _mapper.Map<UserResponseDto>(insertedUser),
             AccessToken = accessTokenResult.AccessToken,
             Roles = accessTokenResult.Roles
         };
 
         return responseModel;
     }
+
+
+
+    //public async Task SendAccountVerifyCodeAgain(Guid userId)
+    //{
+    //    if (userId == Guid.Empty) throw new ArgumentNullException(nameof(userId));
+
+    //    User user = await _userService.GetUserDetailByIdAsync(userId);
+    //    if (user.IsVerifiedUser) throw new Exception("User Already Verified");
+    //    await _OTPService.SendConfirmationOTP(user: user);
+    //}
+
+
+
+    //[Validation(typeof(OtpControlDto))]
+    //public async Task<UserAuthResponseModel> VerifyUserAccount(OtpControlDto otpControlDto)
+    //{
+    //    await _OTPService.VerifyConfirmationOTP(otpControlDto);
+    //    // otp verified...
+    //    User existingUser = await _userService.GetUserDetailByIdAsync(otpControlDto.UserId);
+    //    if (existingUser.IsVerifiedUser) throw new Exception("User Already Verified");
+    //    existingUser.IsVerifiedUser = true;
+    //    User updatedUser = await _userService.UpdateUserDetailAsync(existingUser);
+
+    //    AccessTokenResultModel accessTokenResult = await _tokenService.CreateAccessToken(updatedUser);
+
+    //    UserAuthResponseModel responseModel = new UserAuthResponseModel
+    //    {
+    //        User = _mapper.Map<UserResponseDto>(updatedUser),
+    //        AccessToken = accessTokenResult.AccessToken,
+    //        Roles = accessTokenResult.Roles
+    //    };
+
+    //    return responseModel;
+    //}
 
 
 
@@ -98,12 +116,15 @@ public class AuthService : IAuthService
         bool isValid = HashingHelper.VerifyPasswordHash(loginRequest.Password, user.PasswordHash!, user.PasswordSalt!);
         if (isValid == false) throw new BusinessException("Password is not Correct");
 
-        if (user.IsVerifiedUser == false)
-        {
-            await _OTPService.SendConfirmationOTP(user: user); // send verify code again automaticly
-            throw new BusinessException("NotVerifiedUser");
-        }
-        if (user.AutheticatorType != AutheticatorType.Email) throw new BusinessException("OauthUserCannotLoginByMail");
+        // *** IMPORTANT *** Open folowing code when you add verification
+        //if (user.IsVerifiedUser == false)
+        //{
+        //    await _OTPService.SendConfirmationOTP(user: user); // send verify code again automaticly
+        //    throw new BusinessException("NotVerifiedUser");
+        //}
+
+        // *** IMPORTANT *** Open folowing code when you add diferent auth types
+        //if (user.AutheticatorType != AutheticatorType.Email) throw new BusinessException("OauthUserCannotLoginByMail");
 
         AccessTokenResultModel accessTokenResult = await _tokenService.CreateAccessToken(user);
 
@@ -118,39 +139,41 @@ public class AuthService : IAuthService
     }
 
 
-    [Validation(typeof(OtpControlByEmail))]
-    public async Task<UserAuthResponseModel> VerifyUserAccount(OtpControlByEmail otpControlByEmail)
-    {
-        User existingUser = await _userService.GetUserDetailByEmailAsync(otpControlByEmail.Email);
-        if (existingUser == null) throw new BusinessException("Email does not exist!");
-        if (existingUser.IsVerifiedUser) throw new Exception("User Already Verified");
+    //[Validation(typeof(OtpControlByEmail))]
+    //public async Task<UserAuthResponseModel> VerifyUserAccount(OtpControlByEmail otpControlByEmail)
+    //{
+    //    User existingUser = await _userService.GetUserDetailByEmailAsync(otpControlByEmail.Email);
+    //    if (existingUser == null) throw new BusinessException("Email does not exist!");
+    //    if (existingUser.IsVerifiedUser) throw new Exception("User Already Verified");
 
-        await _OTPService.VerifyConfirmationOTP(new OtpControlDto(userId: existingUser.Id, code: otpControlByEmail.Code));
-        // otp verified...
+    //    await _OTPService.VerifyConfirmationOTP(new OtpControlDto(userId: existingUser.Id, code: otpControlByEmail.Code));
+    //    // otp verified...
          
-        existingUser.IsVerifiedUser = true;
-        User updatedUser = await _userService.UpdateUserDetailAsync(existingUser);
+    //    existingUser.IsVerifiedUser = true;
+    //    User updatedUser = await _userService.UpdateUserDetailAsync(existingUser);
 
-        AccessTokenResultModel accessTokenResult = await _tokenService.CreateAccessToken(updatedUser);
+    //    AccessTokenResultModel accessTokenResult = await _tokenService.CreateAccessToken(updatedUser);
 
-        UserAuthResponseModel responseModel = new UserAuthResponseModel
-        {
-            User = _mapper.Map<UserResponseDto>(updatedUser),
-            AccessToken = accessTokenResult.AccessToken,
-            Roles = accessTokenResult.Roles
-        };
+    //    UserAuthResponseModel responseModel = new UserAuthResponseModel
+    //    {
+    //        User = _mapper.Map<UserResponseDto>(updatedUser),
+    //        AccessToken = accessTokenResult.AccessToken,
+    //        Roles = accessTokenResult.Roles
+    //    };
 
-        return responseModel;
-    }
+    //    return responseModel;
+    //}
 
-    public async Task SendAccountVerifyCodeAgain(string email)
-    {
-        if (string.IsNullOrWhiteSpace(email)) throw new ArgumentNullException(nameof(email));
 
-        User user = await _userService.GetUserDetailByEmailAsync(email);
-        if (user.IsVerifiedUser) throw new Exception("User Already Verified");
-        await _OTPService.SendConfirmationOTP(user: user);
-    }
+
+    //public async Task SendAccountVerifyCodeAgain(string email)
+    //{
+    //    if (string.IsNullOrWhiteSpace(email)) throw new ArgumentNullException(nameof(email));
+
+    //    User user = await _userService.GetUserDetailByEmailAsync(email);
+    //    if (user.IsVerifiedUser) throw new Exception("User Already Verified");
+    //    await _OTPService.SendConfirmationOTP(user: user);
+    //}
 
 
 
@@ -170,8 +193,8 @@ public class AuthService : IAuthService
         userToInsert.AutheticatorType = AutheticatorType.Email;
 
         User insertedUser = await _userService.InsertUserAsync(userToInsert);
-
-        var authorizedRole = await _roleService.GetRoleByNameAsync("Authorized");
+         
+        var authorizedRole = await _roleService.InsertRoleAsync(new RoleCreateDto() { Name = "Authorized" });// if role exist not problem
         if (authorizedRole != null)
         {
             await _roleService.AddRoleToUserAsync(new RoleUserRequestDto { RoleId = authorizedRole.Id, UserId = insertedUser.Id });
@@ -195,17 +218,17 @@ public class AuthService : IAuthService
 
 
 
-    public async Task SendPasswordResetMail(string email)
-    {
-        if (string.IsNullOrWhiteSpace(email)) throw new ArgumentNullException(nameof(email));
+    //public async Task SendPasswordResetMail(string email)
+    //{
+    //    if (string.IsNullOrWhiteSpace(email)) throw new ArgumentNullException(nameof(email));
 
-        User user = await _userService.GetUserDetailByEmailAsync(email);
-        if (user == null) throw new BusinessException("Email is not exist!");
-        if (user.AutheticatorType != AutheticatorType.Email) throw new BusinessException("OauthUserCannotResetPassword");
-        if (user.IsVerifiedUser == false) throw new BusinessException("NotVerifiedUser");
+    //    User user = await _userService.GetUserDetailByEmailAsync(email);
+    //    if (user == null) throw new BusinessException("Email is not exist!");
+    //    if (user.AutheticatorType != AutheticatorType.Email) throw new BusinessException("OauthUserCannotResetPassword");
+    //    if (user.IsVerifiedUser == false) throw new BusinessException("NotVerifiedUser");
 
-        await _OTPService.SendConfirmationOTP(user: user);
-    } 
+    //    await _OTPService.SendConfirmationOTP(user: user);
+    //} 
 
 
 
@@ -215,7 +238,8 @@ public class AuthService : IAuthService
         User existingUser = await _userService.GetUserDetailByEmailAsync(userPasswordResetDto.Email);
         if (existingUser == null) throw new BusinessException("Email is not exist! ");
 
-        await _OTPService.VerifyConfirmationOTP(new OtpControlDto(userId: existingUser.Id, code: userPasswordResetDto.OtpCode));
+        // *** IMPORTANT *** Open folowing code when you add verification
+        // await _OTPService.VerifyConfirmationOTP(new OtpControlDto(userId: existingUser.Id, code: userPasswordResetDto.OtpCode));
         // otp verified...
 
         byte[] passwordSalt, passwordHash;

@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Business.Concrete;
 
-[BusinessExceptionHandler]
+//[BusinessExceptionHandler]
 internal class TokenService : ITokenService
 {
     private readonly IRoleService _roleService;

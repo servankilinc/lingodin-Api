@@ -5,6 +5,6 @@ namespace Business.Abstract;
 
 public interface IOAuthService
 {
-    Task<UserAuthResponseModel> LoginByGoogle(GoogleLoginRequest googleLoginRequest);
-    Task<UserAuthResponseModel> LoginByFacebook(FacebookLoginRequest facebookLoginRequest);
+    //Task<UserAuthResponseModel> LoginByGoogle(GoogleLoginRequest googleLoginRequest);
+    //Task<UserAuthResponseModel> LoginByFacebook(FacebookLoginRequest facebookLoginRequest);
 }

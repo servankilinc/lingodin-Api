@@ -12,7 +12,7 @@ using Model.Entities;
 
 namespace Business.Concrete;
 
-[BusinessExceptionHandler]
+//[BusinessExceptionHandler]
 public class UserService : IUserService
 {
     private readonly IUserDal _userDal;

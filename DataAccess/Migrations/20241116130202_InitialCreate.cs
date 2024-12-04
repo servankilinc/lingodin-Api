@@ -27,6 +27,19 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Otp",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ExpiryTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Otp", x => x.UserId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
                 {
@@ -47,6 +60,7 @@ namespace DataAccess.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    IsVerifiedUser = table.Column<bool>(type: "bit", nullable: false),
                     AutheticatorType = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -177,6 +191,9 @@ namespace DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Learneds");
+
+            migrationBuilder.DropTable(
+                name: "Otp");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");

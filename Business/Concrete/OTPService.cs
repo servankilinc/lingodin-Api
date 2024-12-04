@@ -10,64 +10,64 @@ using Model.Entities;
 
 namespace Business.Concrete;
 
-[BusinessExceptionHandler]
+//[BusinessExceptionHandler]
 public class OTPService : IOTPService
 {
-    private readonly IOTPDal _OTPDal;
-    private readonly IUserService _userService;
-    private readonly MailMessageBrokerProducer _mailMQProducerService;  
-    public OTPService(IOTPDal OTPDal, IUserService userService, MailMessageBrokerProducer mailMQProducerService)
-    {
-        _OTPDal = OTPDal;
-        _userService = userService;
-        _mailMQProducerService = mailMQProducerService;
-    }
+    //private readonly IOTPDal _OTPDal;
+    //private readonly IUserService _userService;
+    //private readonly MailMessageBrokerProducer _mailMQProducerService;  
+    //public OTPService(IOTPDal OTPDal, IUserService userService, MailMessageBrokerProducer mailMQProducerService)
+    //{
+    //    _OTPDal = OTPDal;
+    //    _userService = userService;
+    //    _mailMQProducerService = mailMQProducerService;
+    //}
 
 
-    public async Task SendConfirmationOTP(User user)
-    {
-        OTP otp = new OTP()
-        {
-            UserId = user.Id,
-            Code = OTPHelper.GenerateSecureVerificationCode(),
-            ExpiryTime = DateTime.UtcNow.AddMinutes(5)
-        };
-        bool isAlreadyExist = await _OTPDal.IsExistAsync(filter: o => o.UserId == user.Id);
-        if (!isAlreadyExist) await _OTPDal.AddAsync(otp);
-        if (isAlreadyExist) await _OTPDal.UpdateAsync(otp);
+    //public async Task SendConfirmationOTP(User user)
+    //{
+    //    OTP otp = new OTP()
+    //    {
+    //        UserId = user.Id,
+    //        Code = OTPHelper.GenerateSecureVerificationCode(),
+    //        ExpiryTime = DateTime.UtcNow.AddMinutes(5)
+    //    };
+    //    bool isAlreadyExist = await _OTPDal.IsExistAsync(filter: o => o.UserId == user.Id);
+    //    if (!isAlreadyExist) await _OTPDal.AddAsync(otp);
+    //    if (isAlreadyExist) await _OTPDal.UpdateAsync(otp);
 
-        MailSendModel mailModel = new MailSendModel()
-        {
-            Subject = "OneDay, Verification  Code.",
-            HtmlContent = $"welcome you to OneDay! please use the verification code below <hr> Verification Code: <b style='color:#0556f3;'>{otp.Code}</b> <hr> <p>Please enter this code on the verification page <br> <span style='font-size:x-small;'> Code expiration date <br> (UTC) {otp.ExpiryTime.ToString("dd.MM.yyyy HH:mm")} </span> </p>>",
-            RecipientEmailList = new List<string>() { user.Email! },
-        };
+    //    MailSendModel mailModel = new MailSendModel()
+    //    {
+    //        Subject = "Lingodin, Verification  Code.",
+    //        HtmlContent = $"welcome you to Lingodin! please use the verification code below <hr> Verification Code: <b style='color:#0556f3;'>{otp.Code}</b> <hr> <p>Please enter this code on the verification page <br> <span style='font-size:x-small;'> Code expiration date <br> (UTC) {otp.ExpiryTime.ToString("dd.MM.yyyy HH:mm")} </span> </p>>",
+    //        RecipientEmailList = new List<string>() { user.Email! },
+    //    };
 
-        _mailMQProducerService.SendByDirectExc<MailSendModel>(mailModel);
-    }
+    //    _mailMQProducerService.SendByDirectExc<MailSendModel>(mailModel);
+    //}
 
-    public async Task VerifyConfirmationOTP(OtpControlDto otpControlDto)
-    {
-        OTP storedOTP = await _OTPDal.GetAsync(filter: o => o.UserId == otpControlDto.UserId);
-        if (storedOTP == null) throw new BusinessException("Not Exist Any Code in System");
+    //public async Task VerifyConfirmationOTP(OtpControlDto otpControlDto)
+    //{
+    //    OTP storedOTP = await _OTPDal.GetAsync(filter: o => o.UserId == otpControlDto.UserId);
+    //    if (storedOTP == null) throw new BusinessException("Not Exist Any Code in System");
 
-        if (otpControlDto.Code != storedOTP.Code) throw new BusinessException("Code is not correct");
-        if (DateTime.UtcNow.AddMinutes(1) >= storedOTP.ExpiryTime) throw new BusinessException("Expiration Time Over");
-    }
+    //    if (otpControlDto.Code != storedOTP.Code) throw new BusinessException("Code is not correct");
+    //    if (DateTime.UtcNow.AddMinutes(1) >= storedOTP.ExpiryTime) throw new BusinessException("Expiration Time Over");
+    //}
 
 
-    public async Task<DateTime> GetOTPExpirationTime(string email)
-    {
-        var user = await _userService.GetUserByMailAsync(email);
-        OTP storedOTP = await _OTPDal.GetAsync(filter: o => o.UserId == user.Id);
-        if (storedOTP == null) throw new BusinessException("Not Exist Any Code in System");
-        return storedOTP.ExpiryTime;
-    }
+    //public async Task<DateTime> GetOTPExpirationTime(string email)
+    //{
+    //    var user = await _userService.GetUserByMailAsync(email);
+    //    OTP storedOTP = await _OTPDal.GetAsync(filter: o => o.UserId == user.Id);
+    //    if (storedOTP == null) throw new BusinessException("Not Exist Any Code in System");
+    //    return storedOTP.ExpiryTime;
+    //}
 
-    public async Task<DateTime> GetOTPExpirationTime(Guid userId)
-    {
-        OTP storedOTP = await _OTPDal.GetAsync(filter: o => o.UserId == userId);
-        if (storedOTP == null) throw new BusinessException("Not Exist Any Code in System");
-        return storedOTP.ExpiryTime; 
-    }
+    //public async Task<DateTime> GetOTPExpirationTime(Guid userId)
+    //{
+    //    OTP storedOTP = await _OTPDal.GetAsync(filter: o => o.UserId == userId);
+    //    if (storedOTP == null) throw new BusinessException("Not Exist Any Code in System");
+    //    return storedOTP.ExpiryTime; 
+    //}
 }

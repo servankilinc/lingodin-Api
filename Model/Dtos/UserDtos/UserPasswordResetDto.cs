@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using Microsoft.Extensions.Azure;
 
 namespace Model.Dtos.UserDtos;
 
@@ -19,7 +18,7 @@ public class UserPasswordResetDtoValidator : AbstractValidator<UserPasswordReset
         RuleFor(x => x.Email).EmailAddress().NotEmpty();
         RuleFor(x => x.Password).NotEmpty().MinimumLength(6);
         RuleFor(x => x.ConfirmedPassword).NotEmpty().MinimumLength(6);
-        RuleFor(x => x.OtpCode).NotEmpty().MinimumLength(6);
+        //RuleFor(x => x.OtpCode).NotEmpty().MinimumLength(6);
 
         RuleFor(x => x).Custom((model, context) =>
         {

@@ -9,7 +9,7 @@ using Model.ViewModels;
 
 namespace Business.Concrete;
 
-[BusinessExceptionHandler]
+//[BusinessExceptionHandler]
 public class RoleService : IRoleService
 {
     private readonly IRoleDal _roleDal;
@@ -32,7 +32,7 @@ public class RoleService : IRoleService
     public async Task<ICollection<RoleResponseDto>> GetAllRolesAsync()
     {
         var roleList = await _roleDal.GetAllAsync();
-        var mappedList = roleList.Select(r => _mapper.Map<RoleResponseDto>(r)).ToList();
+        var mappedList = roleList.Select(_mapper.Map<RoleResponseDto>).ToList();
         return mappedList;
     }
 
@@ -82,10 +82,15 @@ public class RoleService : IRoleService
     [Validation(typeof(RoleCreateDto))]
     public async Task<RoleResponseDto> InsertRoleAsync(RoleCreateDto roleCreateDto)
     {
-        var role = _mapper.Map<Role>(roleCreateDto);
-        var insertedRole = await _roleDal.AddAsync(role);
-        var responseDto = _mapper.Map<RoleResponseDto>(insertedRole);
-        return responseDto;
+        bool isExistAlready = _roleDal.IsExist(filter: r => r.Name == roleCreateDto.Name);
+        if (isExistAlready)
+        {
+            var role = await GetRoleByNameAsync(roleCreateDto.Name);
+            return _mapper.Map<RoleResponseDto>(role);
+        }
+        var roleToInsert = _mapper.Map<Role>(roleCreateDto);
+        var insertedRole = await _roleDal.AddAsync(roleToInsert);
+        return _mapper.Map<RoleResponseDto>(insertedRole);
     }
 
 

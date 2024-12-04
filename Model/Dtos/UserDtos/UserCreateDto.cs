@@ -17,7 +17,7 @@ public class UserCreateDtoValidator : AbstractValidator<UserCreateDto>
 {
     public UserCreateDtoValidator()
     {
-        RuleFor(x => x.FullName).NotEmpty();
+        RuleFor(x => x.FullName).MinimumLength(2).NotEmpty();
         RuleFor(x => x.Email).NotEmpty().EmailAddress();
         RuleFor(x => x.Password).NotEmpty().MinimumLength(6);
     }

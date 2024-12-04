@@ -1,7 +1,10 @@
 ﻿using Business.Abstract;
+using Business.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Model.Dtos.CategoryDtos;
+using Model.Entities;
+using System.Security.Policy;
 
 namespace WebApi.Controllers;
 
@@ -11,8 +14,11 @@ namespace WebApi.Controllers;
 public class CategoryController : ControllerBase
 {
     private readonly ICategoryService _categoryService;
-    public CategoryController(ICategoryService categoryService) => _categoryService = categoryService;
-   
+
+    public CategoryController(ICategoryService categoryService)
+    {
+        _categoryService = categoryService;
+    }
 
     [Authorize]
     [HttpGet("Get")]
@@ -72,15 +78,46 @@ public class CategoryController : ControllerBase
     [HttpPost("ImageUpdate")]
     public async Task<IActionResult> ImageUpdate(IFormFile file, Guid categoryId)
     {
-        var result = await _categoryService.UpdateImageAsync(file, categoryId);
+        if (file == null || file.Length == 0)
+        {
+            return BadRequest("No file provided.");
+        }
+
+        var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", "Category");
+
+        if (!Directory.Exists(uploadFolder))
+        {
+            Directory.CreateDirectory(uploadFolder);
+        }
+
+        var fileExtension = Path.GetExtension(file.FileName);
+        var fileName = $"{categoryId}{fileExtension}";
+        var filePath = Path.Combine(uploadFolder, fileName);
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await file.CopyToAsync(stream);
+        }
+
+        var fileUrl = $"/Category/{fileName}";
+        var result = await _categoryService.UpdateImageAsync(categoryId, fileUrl);
         return Ok(result);
+
     }
 
     [Authorize(Roles = "Admin, Authorized")]
     [HttpDelete("ImageDelete")]
     public async Task<IActionResult> ImageDelete(Guid categoryId, string url)
     {
-        var result = await _categoryService.DeleteImageAsync(categoryId, url);
-        return Ok(result);
+        var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot", url.TrimStart('/'));
+
+        if (System.IO.File.Exists(filePath))
+        {
+            System.IO.File.Delete(filePath);
+            var result = await _categoryService.DeleteImageAsync(categoryId);
+            return Ok(result);
+        }
+
+        return BadRequest("File not found.");
     }
 }

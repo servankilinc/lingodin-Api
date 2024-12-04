@@ -12,8 +12,8 @@ public interface ICategoryService
     Task<CategoryResponseDto> InsertCategoryAsync(CategoryCreateDto cateogoryCreateDto);
     Task<CategoryResponseDto> UpdateCategoryAsync(CategoryUpdateDto categoryUpdateDto);
     Task DeleteCategoryAsync(Guid categoryId);
-    Task<CategoryResponseDto> UpdateImageAsync(IFormFile file, Guid categoryId);
-    Task<CategoryResponseDto> DeleteImageAsync(Guid categoryId, string url);
+    Task<CategoryResponseDto> UpdateImageAsync(Guid categoryId, string imageUrl); // IFormFile file, 
+    Task<CategoryResponseDto> DeleteImageAsync(Guid categoryId); // , string url
 
     // 2) Interaction Methods
     Task<CategoryByUserModel> GetCategoryForUserAsync(Guid categoryId, Guid userId);

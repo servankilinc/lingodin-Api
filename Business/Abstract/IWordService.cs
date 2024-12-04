@@ -16,8 +16,8 @@ public interface IWordService
     Task<WordResponseDto> UpdateWordAsync(WordUpdateDto wordUpdateDto);
     Task<WordResponseDto> ChangeCategoryOfWordAsync(CategoryWordRequestDto requestDto);
     Task DeleteWordAsync(Guid wordId);
-    Task<WordResponseDto> UpdateImageAsync(IFormFile file, Guid wordId);
-    Task<WordResponseDto> DeleteImageAsync(Guid wordId, string url);
+    Task<WordResponseDto> UpdateImageAsync(Guid wordId, string imageUrl); // IFormFile file,
+    Task<WordResponseDto> DeleteImageAsync(Guid wordId); // , string url
 
 
     // 2) Interaction Methods

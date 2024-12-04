@@ -11,102 +11,102 @@ using System.Net.Http.Json;
 
 namespace Business.Concrete;
 
-[BusinessExceptionHandler]
+//[BusinessExceptionHandler]
 public class OAuthService : IOAuthService
 {
-    private readonly IUserService _userService;
-    private readonly ITokenService _tokenService;
-    private readonly FacebookAppSettings _facebookAppSettings;
-    private readonly GoogleJsonWebSignature.ValidationSettings _googleValidationSettings;
-    private readonly IMapper _mapper;
-    public OAuthService(IUserService userService, ITokenService tokenService, FacebookAppSettings facebookAppSettings, GoogleJsonWebSignature.ValidationSettings googleValidationSettings, IMapper mapper)
-    {
-        _userService = userService;
-        _tokenService = tokenService;
-        _facebookAppSettings = facebookAppSettings;
-        _googleValidationSettings = googleValidationSettings;
-        _mapper = mapper;
-    }
+    //private readonly IUserService _userService;
+    //private readonly ITokenService _tokenService;
+    //private readonly FacebookAppSettings _facebookAppSettings;
+    //private readonly GoogleJsonWebSignature.ValidationSettings _googleValidationSettings;
+    //private readonly IMapper _mapper;
+    //public OAuthService(IUserService userService, ITokenService tokenService, FacebookAppSettings facebookAppSettings, GoogleJsonWebSignature.ValidationSettings googleValidationSettings, IMapper mapper)
+    //{
+    //    _userService = userService;
+    //    _tokenService = tokenService;
+    //    _facebookAppSettings = facebookAppSettings;
+    //    _googleValidationSettings = googleValidationSettings;
+    //    _mapper = mapper;
+    //}
 
 
-    public async Task<UserAuthResponseModel> LoginByGoogle(GoogleLoginRequest googleLoginRequest)
-    {
-        if (string.IsNullOrWhiteSpace(googleLoginRequest.IdToken)) throw new ArgumentNullException(nameof(googleLoginRequest.IdToken));
+    //public async Task<UserAuthResponseModel> LoginByGoogle(GoogleLoginRequest googleLoginRequest)
+    //{
+    //    if (string.IsNullOrWhiteSpace(googleLoginRequest.IdToken)) throw new ArgumentNullException(nameof(googleLoginRequest.IdToken));
 
-        GoogleJsonWebSignature.Payload payload = await GoogleJsonWebSignature.ValidateAsync(googleLoginRequest.IdToken, _googleValidationSettings);
+    //    GoogleJsonWebSignature.Payload payload = await GoogleJsonWebSignature.ValidateAsync(googleLoginRequest.IdToken, _googleValidationSettings);
 
-        var model = await HandleUser(payload.Email, payload.Name, AutheticatorType.Google);
-        return model;
-    }
+    //    var model = await HandleUser(payload.Email, payload.Name, AutheticatorType.Google);
+    //    return model;
+    //}
 
-    public async Task<UserAuthResponseModel> LoginByFacebook(FacebookLoginRequest facebookLoginRequest)
-    {
-        if (string.IsNullOrWhiteSpace(facebookLoginRequest.AccessToken)) throw new ArgumentNullException(nameof(facebookLoginRequest.AccessToken));
+    //public async Task<UserAuthResponseModel> LoginByFacebook(FacebookLoginRequest facebookLoginRequest)
+    //{
+    //    if (string.IsNullOrWhiteSpace(facebookLoginRequest.AccessToken)) throw new ArgumentNullException(nameof(facebookLoginRequest.AccessToken));
 
-        string apiAccessToken = $"{_facebookAppSettings.AppId}|{_facebookAppSettings.AppSecret}";
+    //    string apiAccessToken = $"{_facebookAppSettings.AppId}|{_facebookAppSettings.AppSecret}";
 
-        HttpClient httpClient = new HttpClient();
+    //    HttpClient httpClient = new HttpClient();
         
-        FacebookAccesTokenDebugResponse? validationResponse = await httpClient.GetFromJsonAsync<FacebookAccesTokenDebugResponse>($"https://graph.facebook.com/v20.0/debug_token?input_token={facebookLoginRequest.AccessToken}&access_token={apiAccessToken}");
-        if (validationResponse == null) throw new Exception("Facebook access debug response could not read!");
+    //    FacebookAccesTokenDebugResponse? validationResponse = await httpClient.GetFromJsonAsync<FacebookAccesTokenDebugResponse>($"https://graph.facebook.com/v20.0/debug_token?input_token={facebookLoginRequest.AccessToken}&access_token={apiAccessToken}");
+    //    if (validationResponse == null) throw new Exception("Facebook access debug response could not read!");
 
-        FacebookAccesTokenDebug accesTokenDebug = validationResponse.data;
-        if (accesTokenDebug.is_valid == false) throw new Exception("Access is not valid!");
+    //    FacebookAccesTokenDebug accesTokenDebug = validationResponse.data;
+    //    if (accesTokenDebug.is_valid == false) throw new Exception("Access is not valid!");
          
-        FacebookUserInfo? userInfo = await httpClient.GetFromJsonAsync<FacebookUserInfo>($"https://graph.facebook.com/v20.0/me?fields=first_name%2Clast_name&input_token={facebookLoginRequest.AccessToken}&access_token={apiAccessToken}");
-        if (userInfo == null) throw new Exception("User information could not read from facebook!");
+    //    FacebookUserInfo? userInfo = await httpClient.GetFromJsonAsync<FacebookUserInfo>($"https://graph.facebook.com/v20.0/me?fields=first_name%2Clast_name&input_token={facebookLoginRequest.AccessToken}&access_token={apiAccessToken}");
+    //    if (userInfo == null) throw new Exception("User information could not read from facebook!");
 
 
-        string customMailAddressForFacebookUser = $"{userInfo.id}@facebook.com";
-        string userFullName = $"{userInfo.first_name} {userInfo.last_name}";
+    //    string customMailAddressForFacebookUser = $"{userInfo.id}@facebook.com";
+    //    string userFullName = $"{userInfo.first_name} {userInfo.last_name}";
 
-        var model = await HandleUser(customMailAddressForFacebookUser, userFullName, AutheticatorType.Facebook);
-        return model;
-    }
+    //    var model = await HandleUser(customMailAddressForFacebookUser, userFullName, AutheticatorType.Facebook);
+    //    return model;
+    //}
 
-    private async Task<UserAuthResponseModel> HandleUser(string mailAddress, string fullName, AutheticatorType autheticatorType)
-    {
-        User user;
+    //private async Task<UserAuthResponseModel> HandleUser(string mailAddress, string fullName, AutheticatorType autheticatorType)
+    //{
+    //    User user;
         
-        bool isUserExist = await _userService.IsUserExistByEmailAsync(mailAddress);
+    //    bool isUserExist = await _userService.IsUserExistByEmailAsync(mailAddress);
 
-        if (isUserExist)
-        {
-            user = await _userService.GetUserDetailByEmailAsync(mailAddress);
-        }
-        else 
-        {
-            UserCreateDto createDto = new()
-            {
-                Email = mailAddress,
-                FullName = fullName,
-                Password = new Guid().ToString(),
-                AutheticatorType = autheticatorType,
-            };
+    //    if (isUserExist)
+    //    {
+    //        user = await _userService.GetUserDetailByEmailAsync(mailAddress);
+    //    }
+    //    else 
+    //    {
+    //        UserCreateDto createDto = new()
+    //        {
+    //            Email = mailAddress,
+    //            FullName = fullName,
+    //            Password = new Guid().ToString(),
+    //            AutheticatorType = autheticatorType,
+    //        };
 
-            byte[] passwordSalt, passwordHash;
-            HashingHelper.CreatePasswordHash(createDto.Password, out passwordHash, out passwordSalt);
+    //        byte[] passwordSalt, passwordHash;
+    //        HashingHelper.CreatePasswordHash(createDto.Password, out passwordHash, out passwordSalt);
 
-            User userToInsert = _mapper.Map<User>(createDto);
-            userToInsert.PasswordHash = passwordHash;
-            userToInsert.PasswordSalt = passwordSalt;
-            userToInsert.IsVerifiedUser = true; 
+    //        User userToInsert = _mapper.Map<User>(createDto);
+    //        userToInsert.PasswordHash = passwordHash;
+    //        userToInsert.PasswordSalt = passwordSalt;
+    //        userToInsert.IsVerifiedUser = true; 
 
-            user = await _userService.InsertUserAsync(userToInsert);
-        }
+    //        user = await _userService.InsertUserAsync(userToInsert);
+    //    }
 
 
-        AccessTokenResultModel accessTokenResult = await _tokenService.CreateAccessToken(user);
+    //    AccessTokenResultModel accessTokenResult = await _tokenService.CreateAccessToken(user);
 
-        UserAuthResponseModel responseModel = new UserAuthResponseModel
-        {
-            User = _mapper.Map<UserResponseDto>(user),
-            AccessToken = accessTokenResult.AccessToken,
-            Roles = accessTokenResult.Roles
-        };
+    //    UserAuthResponseModel responseModel = new UserAuthResponseModel
+    //    {
+    //        User = _mapper.Map<UserResponseDto>(user),
+    //        AccessToken = accessTokenResult.AccessToken,
+    //        Roles = accessTokenResult.Roles
+    //    };
 
-        return responseModel;
-    }
+    //    return responseModel;
+    //}
 }
 
 
