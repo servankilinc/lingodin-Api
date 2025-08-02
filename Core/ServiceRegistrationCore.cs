@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Core.Utils.Caching;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Core;
@@ -12,6 +13,7 @@ public static class ServiceRegistrationCore
         // {
         //     options.Configuration = configuration["Redis:ConnectionString"];
         // });
+        //services.AddSingleton<ICacheService, CacheService>();
         return services;
     }
 }
